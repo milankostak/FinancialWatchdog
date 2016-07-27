@@ -5,18 +5,25 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.orm.SugarContext;
+import com.orm.SugarRecord;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Iterator;
+import java.util.List;
+
+import hk.edu.cityu.financialwatchdog.entity.MyUser;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -36,6 +43,32 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         initPieChart();
+        testDatabase();
+    }
+
+    private void testDatabase() {
+        //MyUser user = new MyUser("Pepa", "Starý", (int)(Math.random()*1000));
+        //SugarRecord.save(user);
+
+        Button btnTestDB = (Button) findViewById(R.id.testDB);
+        btnTestDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                writeUsers();
+            }
+        });
+    }
+
+    private void writeUsers() {
+        //check count
+        long a = SugarRecord.count(MyUser.class);
+        System.out.println("Count: " + a);
+
+        //write all to console
+        Iterator<MyUser> users = MyUser.findAll();
+        while (users.hasNext()){
+            System.out.println(users.next());
+        }
     }
 
     private void initPieChart() {
