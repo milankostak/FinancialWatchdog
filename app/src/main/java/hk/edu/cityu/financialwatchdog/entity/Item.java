@@ -1,7 +1,6 @@
 package hk.edu.cityu.financialwatchdog.entity;
 
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
 
 import java.util.Date;
 

@@ -6,17 +6,22 @@ import android.content.SharedPreferences;
 /**
  * Created by Milan on 28.7.2016.
  */
+// https://developer.android.com/guide/topics/data/data-storage.html#pref
 public class Settings {
     private static final String SETTINGS_NAME = "AppSettings";
     private Activity activity;
 
+    //preferences objects
+    private SharedPreferences settings;
+    private SharedPreferences.Editor editor;
+
     private static final String TOTAL_LIMIT_NAME = "TotalLimitName";
-    public long totalLimit;
+    private long totalLimit;
 
     /**
      * Constructor requires activity to be set,
      * because SharedPreference are functionality over activities
-     * @param activity
+     * @param activity set from activity that is calling constructor
      */
     public Settings(Activity activity) {
         this.activity = activity;
@@ -27,22 +32,19 @@ public class Settings {
      * Restores data when object is instantiated
      */
     public void restore() {
-        SharedPreferences settings = activity.getSharedPreferences(SETTINGS_NAME, 0);
+        settings = activity.getSharedPreferences(SETTINGS_NAME, 0);
+        editor = settings.edit();
+
         totalLimit = settings.getLong(TOTAL_LIMIT_NAME, 0);
     }
 
-    /**
-     * Save made changes
-     * Important to call for changes to save
-     */
-    public void save() {
-        // We need an Editor object to make preference changes.
-        // All objects are from android.context.Context
-        SharedPreferences settings = activity.getSharedPreferences(SETTINGS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putLong(TOTAL_LIMIT_NAME, totalLimit);
+    public long getTotalLimit() {
+        return totalLimit;
+    }
 
-        // Commit the edits!
+    public void setTotalLimit(long totalLimit) {
+        this.totalLimit = totalLimit;
+        editor.putLong(TOTAL_LIMIT_NAME, totalLimit);
         editor.apply();
     }
 }

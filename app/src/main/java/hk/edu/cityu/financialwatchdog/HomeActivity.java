@@ -56,9 +56,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void testSettings() {
         Settings settings = new Settings(this);
-        System.out.println("Total Limit: " + settings.totalLimit);
-        settings.totalLimit = 2500;
-        settings.save();
+        System.out.println("Total Limit: " + settings.getTotalLimit());
+        settings.setTotalLimit(123456);
     }
 
     private void testDatabase() {
@@ -88,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
 
         PieDataSet dataset = new PieDataSet(entries, "# of Calls");
 
-        ArrayList<String> labels = new ArrayList<String>();
+        ArrayList<String> labels = new ArrayList<>();
         labels.add("January");
         labels.add("February");
         labels.add("March");
@@ -103,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
 
         pieChart.animateY(5000);
 
-        pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
+        //pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
     }
 
     @Override
