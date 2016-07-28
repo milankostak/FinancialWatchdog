@@ -5,10 +5,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -21,7 +20,6 @@ import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.entity.MyUser;
 
@@ -47,8 +45,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void testDatabase() {
-        //MyUser user = new MyUser("Pepa", "Starý", (int)(Math.random()*1000));
-        //SugarRecord.save(user);
+
+        SugarContext.init(getApplicationContext());
+
+        MyUser user = new MyUser("Pepa", "Starý", (int)(Math.random()*1000));
+        SugarRecord.save(user);
 
         Button btnTestDB = (Button) findViewById(R.id.testDB);
         btnTestDB.setOnClickListener(new View.OnClickListener() {
