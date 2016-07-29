@@ -130,10 +130,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void addThing(View v) {
-        Log.i("clicks","You add a record.");
-        Intent i=new Intent(HomeActivity.this, AddActivity.class);
+        Log.i("clicks", "You add a record.");
+        Intent i = new Intent(HomeActivity.this, AddActivity.class);
         startActivity(i);
     }
-
 
 }
