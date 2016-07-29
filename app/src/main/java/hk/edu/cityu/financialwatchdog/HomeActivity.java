@@ -46,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
                 testSettings();
             }
         });
+        Category.createMockCategories();
         ///////////testing
     }
 
@@ -99,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
         pieChart.setDescription("Description");
         pieChart.setData(data);
 
-        pieChart.animateY(5000);
+        pieChart.animateY(1000);
 
         //pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
     }
@@ -128,7 +129,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void addThing(View v) {
         Log.i("clicks", "You add a record.");
-        Intent i = new Intent(HomeActivity.this, AddActivity.class);
+        Intent i = new Intent(this, AddActivity.class);
         startActivity(i);
     }
 

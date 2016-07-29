@@ -19,12 +19,14 @@ public class Category extends SugarRecord {
     private int moneyLimit;
 
     public static void createMockCategories() {
-        new Category("Food", "#00FF00", 5000).save();
-        new Category("Transportation", "#FF0000", 2000).save();
-        new Category("Fun", "#0000FF", 1000).save();
-        new Category("Clothes", "#FFFF00", 1000).save();
-        new Category("Culture", "#00FFFF", 500).save();
-        new Category("Household", "#FF00FF", 1500).save();
+        if (!getAll().hasNext()) {
+            new Category("Food", "#00FF00", 5000).save();
+            new Category("Transportation", "#FF0000", 2000).save();
+            new Category("Fun", "#0000FF", 1000).save();
+            new Category("Clothes", "#FFFF00", 1000).save();
+            new Category("Culture", "#00FFFF", 500).save();
+            new Category("Household", "#FF00FF", 1500).save();
+        }
     }
 
     public Category() {

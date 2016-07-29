@@ -17,8 +17,11 @@ public class Settings {
     private SharedPreferences settings;
     private SharedPreferences.Editor editor;
 
-    private static final String TOTAL_LIMIT_NAME = "TotalLimitName";
+    private static final String TOTAL_LIMIT_NAME = "TotalLimit";
     private long totalLimit;
+
+    private static final String LOCATION_PERMISSION_NAME = "LocationPermission";
+    private boolean locationPermissionDenied;
 
     /**
      * Constructor requires activity to be set,
@@ -38,6 +41,7 @@ public class Settings {
         editor = settings.edit();
 
         totalLimit = settings.getLong(TOTAL_LIMIT_NAME, 0);
+        locationPermissionDenied = settings.getBoolean(LOCATION_PERMISSION_NAME, false);
     }
 
     public long getTotalLimit() {
@@ -47,6 +51,16 @@ public class Settings {
     public void setTotalLimit(long totalLimit) {
         this.totalLimit = totalLimit;
         editor.putLong(TOTAL_LIMIT_NAME, totalLimit);
+        editor.apply();
+    }
+
+    public boolean isLocationPermissionDenied() {
+        return locationPermissionDenied;
+    }
+
+    public void setLocationPermissionDenied(boolean locationPermissionDenied) {
+        this.locationPermissionDenied = locationPermissionDenied;
+        editor.putBoolean(LOCATION_PERMISSION_NAME, locationPermissionDenied);
         editor.apply();
     }
 }

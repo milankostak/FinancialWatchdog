@@ -1,5 +1,7 @@
 package hk.edu.cityu.financialwatchdog.entity;
 
+import android.location.Location;
+
 import com.orm.SugarRecord;
 
 import java.util.Date;
@@ -11,21 +13,25 @@ import java.util.Date;
 public class Item extends SugarRecord {
     private String name;
     private Date time;
-    private float latitude;
-    private float longitude;
+    private double latitude;
+    private double longitude;
     private double price;
     private Category category;
 
     public Item() {
     }
 
-    public Item(String name, Date time, float latitude, float longitude, double price, Category category) {
+    public Item(String name, Date time, double latitude, double longitude, double price, Category category) {
         this.name = name;
         this.time = time;
         this.latitude = latitude;
         this.longitude = longitude;
         this.price = price;
         this.category = category;
+    }
+
+    public Item(String name, Date time, Location location, double price, Category category) {
+        this(name, time, location == null ? 0 : location.getLatitude(), location == null ? 0 : location.getLongitude(), price, category);
     }
 
     @Override
@@ -56,19 +62,19 @@ public class Item extends SugarRecord {
         this.time = time;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
