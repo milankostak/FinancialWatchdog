@@ -17,13 +17,13 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.orm.SugarContext;
-import com.orm.SugarRecord;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
+import java.util.List;
 
-import hk.edu.cityu.financialwatchdog.entity.MyUser;
+import hk.edu.cityu.financialwatchdog.entity.Category;
+import hk.edu.cityu.financialwatchdog.entity.Item;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -47,12 +47,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void testDatabase() {
-
-        SugarContext.init(getApplicationContext());
-
-        MyUser user = new MyUser("Pepa", "Starý", (int)(Math.random()*1000));
-        SugarRecord.save(user);
-
         Button btnTestDB = (Button) findViewById(R.id.testDB);
         btnTestDB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,15 +57,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void writeUsers() {
-        //check count
-        long a = SugarRecord.count(MyUser.class);
-        System.out.println("Count: " + a);
+        Category.createMockCategories();
+        Category cat = Category.findById(Category.class, 1);
 
-        //write all to console
-        Iterator<MyUser> users = MyUser.findAll();
-        while (users.hasNext()){
-            System.out.println(users.next());
+        Item item = new Item("Dinner", new Date(), 32.5469841f, 85.1354351f, 55, cat);
+        item.save();
+
+        List<Item> items = cat.getItems();
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println(items.get(i).toString());
         }
+
     }
 
     private void initPieChart() {
