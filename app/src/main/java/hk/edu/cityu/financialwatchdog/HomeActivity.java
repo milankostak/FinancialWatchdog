@@ -24,6 +24,7 @@ import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
+import hk.edu.cityu.financialwatchdog.entity.Settings;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -42,25 +43,30 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        ////////////testing
         initPieChart();
-        testDatabase();
-    }
-
-    private void testDatabase() {
         Button btnTestDB = (Button) findViewById(R.id.testDB);
         btnTestDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                writeUsers();
+                testDatabase();
+                testSettings();
             }
         });
+        ///////////testing
     }
 
-    private void writeUsers() {
-        Category.createMockCategories();
+    private void testSettings() {
+        Settings settings = new Settings(this);
+        System.out.println("Total Limit: " + settings.getTotalLimit());
+        settings.setTotalLimit(123456);
+    }
+
+    private void testDatabase() {
+        //Category.createMockCategories();
         Category cat = Category.findById(Category.class, 1);
 
-        Item item = new Item("Dinner", new Date(), 32.5469841f, 85.1354351f, 55, cat);
+        Item item = new Item("Dumplings", new Date(), 22.165468f, 95.961654f, 59, cat);
         item.save();
 
         List<Item> items = cat.getItems();
@@ -83,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
 
         PieDataSet dataset = new PieDataSet(entries, "# of Calls");
 
-        ArrayList<String> labels = new ArrayList<String>();
+        ArrayList<String> labels = new ArrayList<>();
         labels.add("January");
         labels.add("February");
         labels.add("March");
@@ -98,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
 
         pieChart.animateY(5000);
 
-        pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
+        //pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
     }
 
     @Override
