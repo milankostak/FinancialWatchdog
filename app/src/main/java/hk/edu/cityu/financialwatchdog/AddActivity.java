@@ -7,32 +7,37 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
+import hk.edu.cityu.financialwatchdog.entity.Item;
 
 /**
  * Created by Weida on 2016/7/28.
  */
 public class AddActivity extends AppCompatActivity {
+    private Spinner categorySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_activity);
-        initCategorySpinner();
-        currencySpinner();
+        initComponents();
     }
 
     private void initComponents() {
         initCategorySpinner();
+        initCurrencySpinner();
     }
 
-    public void initCategorySpinner() {
-        Spinner spinner = (Spinner) findViewById(R.id.categorySpinner);
+    private void initCategorySpinner() {
+        categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
 
         //Create an ArrayAdapter object, and place contents in the dropdown menu
         List<String> categoryNames = Category.getAllNames();
@@ -41,9 +46,9 @@ public class AddActivity extends AppCompatActivity {
 
         //set the template of dropdown menu
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
+        categorySpinner.setAdapter(adapter);
         //reaction after select something
-        spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
+        categorySpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
             public void onItemSelected(AdapterView adapterView, View view, int position, long id){
                 Toast.makeText(AddActivity.this, "you chose " + adapterView.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
             }
@@ -54,7 +59,7 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    public void currencySpinner(){
+    private void initCurrencySpinner(){
         Spinner spinner = (Spinner) findViewById(R.id.currencySpinner);
 
         ArrayAdapter adapter = new ArrayAdapter(this,
@@ -66,10 +71,25 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    public void saveRecord(View v) {
-        Log.i("clicks", "You save a record");
-        Intent i = new Intent(AddActivity.this, HomeActivity.class);
-        startActivity(i);
+    public void saveItem(View v) {
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        EditText nameText = (EditText) findViewById(R.id.etName);
+        String name = nameText.getText().toString();
+        System.out.println(name);
+
+        Object obj = categorySpinner.getSelectedItem();
+        Category category = Category.findByName(obj.toString());
+
+        EditText priceText = (EditText) findViewById(R.id.etPrice);
+        double price = Double.parseDouble(priceText.getText().toString());
+        //public Item(String name, Date time, float latitude, float longitude, double price, Category category) {
+        //TODO save time and location
+        Item item = new Item(name, new Date(), 10, 10, price, category);
+        item.save();
+
+        //go back to HOME activity
+        finish();
     }
 
 }

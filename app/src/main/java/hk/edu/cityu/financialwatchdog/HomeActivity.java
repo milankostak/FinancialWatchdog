@@ -20,6 +20,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
@@ -64,14 +65,18 @@ public class HomeActivity extends AppCompatActivity {
 
     private void testDatabase() {
         //Category.createMockCategories();
-        Category cat = Category.findById(Category.class, 1);
+        //Category cat = Category.findById(Category.class, 1);
 
-        Item item = new Item("Dumplings", new Date(), 22.165468f, 95.961654f, 59, cat);
-        item.save();
+        //Item item = new Item("Dumplings", new Date(), 22.165468f, 95.961654f, 59, cat);
+        //item.save();
 
-        List<Item> items = cat.getItems();
+        /*List<Item> items = cat.getItems();
         for (int i = 0; i < items.size(); i++) {
             System.out.println(items.get(i).toString());
+        }*/
+        Iterator<Item> items = Item.findAll(Item.class);
+        while (items.hasNext()) {
+            System.out.println(items.next().toString());
         }
 
     }

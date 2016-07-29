@@ -1,15 +1,19 @@
 package hk.edu.cityu.financialwatchdog.entity;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Unique;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Created by Milan on 28.7.2016.
+ * Entity and object for accessing categories data
  */
 public class Category extends SugarRecord {
+    @Unique
     private String name;
     private String color;
     private int moneyLimit;
@@ -32,6 +36,16 @@ public class Category extends SugarRecord {
         this.moneyLimit = moneyLimit;
     }
 
+    // DAO methods - Start
+    public static Category findByName(String catName) {
+        List<Category> categories = find(Category.class, "name = ?", catName);
+        if (categories.size() > 0) {
+            return categories.get(0);
+        } else {
+            return new Category();
+        }
+    }
+
     public static Iterator<Category> getAll() {
         Iterator<Category> categories = Category.findAll(Category.class);
         return categories;
@@ -49,6 +63,8 @@ public class Category extends SugarRecord {
     public List<Item> getItems() {
         return Item.find(Item.class, "category = ?", new String[]{Long.toString(getId())} );
     }
+
+    // DAO methods - END
 
     @Override
     public String toString() {

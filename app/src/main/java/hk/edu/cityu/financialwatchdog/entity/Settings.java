@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 /**
  * Created by Milan on 28.7.2016.
+ * Object for managing settings data
+ * Uses shared preferences
  */
 // https://developer.android.com/guide/topics/data/data-storage.html#pref
 public class Settings {

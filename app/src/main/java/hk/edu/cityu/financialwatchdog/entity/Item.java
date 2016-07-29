@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * Created by Milan on 28.7.2016.
+ * Entity and object for accessing items data
  */
 public class Item extends SugarRecord {
     private String name;
