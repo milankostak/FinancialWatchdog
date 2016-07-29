@@ -2,6 +2,8 @@ package hk.edu.cityu.financialwatchdog.entity;
 
 import com.orm.SugarRecord;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -28,6 +30,20 @@ public class Category extends SugarRecord {
         this.name = name;
         this.color = color;
         this.moneyLimit = moneyLimit;
+    }
+
+    public static Iterator<Category> getAll() {
+        Iterator<Category> categories = Category.findAll(Category.class);
+        return categories;
+    }
+
+    public static List<String> getAllNames() {
+        Iterator<Category> categories = getAll();
+        List<String> names = new ArrayList<>();
+        while (categories.hasNext()) {
+            names.add(categories.next().name);
+        }
+        return names;
     }
 
     public List<Item> getItems() {

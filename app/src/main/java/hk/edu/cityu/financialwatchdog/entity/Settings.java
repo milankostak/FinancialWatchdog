@@ -31,7 +31,7 @@ public class Settings {
     /**
      * Restores data when object is instantiated
      */
-    public void restore() {
+    private void restore() {
         settings = activity.getSharedPreferences(SETTINGS_NAME, 0);
         editor = settings.edit();
 
