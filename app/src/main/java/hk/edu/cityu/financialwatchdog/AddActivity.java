@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.util.List;
@@ -67,24 +68,50 @@ public class AddActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
+    /**
+     * Saves inserted information about an item into database
+     * @param v
+     */
     public void saveItem(View v) {
+        boolean problem = false;
         // name
         EditText nameText = (EditText) findViewById(R.id.etName);
         String name = nameText.getText().toString();
+        if (name == null || name.equals("")) {
+            problem = true;
+            makeToast("Insert name.");
+        }
         //category
         Object obj = categorySpinner.getSelectedItem();
         Category category = Category.findByName(obj.toString());
+        if (category == null) {
+            problem = true;
+            makeToast("Select a category.");
+        }
         //price
         EditText priceText = (EditText) findViewById(R.id.etPrice);
-        double price = Double.parseDouble(priceText.getText().toString());
-        //location
-        Location location = getLocation();
-        //TODO date
-        item = new Item(name, new Date(), location, price, category);
+        String priceString = priceText.getText().toString();
+        double price = 0;
+        if (priceString == null || priceString.equals("")) {
+            problem = true;
+            makeToast("Insert price.");
+        } else {
+            price = Double.parseDouble(priceString);
+            if (price < 0) {
+                problem = true;
+                makeToast("Insert positive price.");
+            }
+        }
+        if (!problem) {
+            //location
+            Location location = getLocation();
+            //TODO date
+            item = new Item(name, new Date(), location, price, category);
 
-        // if not showing dialog with asking for permission
-        if (!isLocationCheckingPermission) {
-            saveAndFinish();
+            // if not showing dialog with asking for permission
+            if (!isLocationCheckingPermission) {
+                saveAndFinish();
+            }
         }
     }
 
@@ -94,6 +121,23 @@ public class AddActivity extends AppCompatActivity {
     private void saveAndFinish() {
         item.save();
         finish();
+    }
+
+    /**
+     * Shows plain toast message
+     * @param msg message to show
+     */
+    private void makeToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Simplifies checking for permission
+     * @param permission permission to test
+     * @return true or false it permissions is given
+     */
+    private boolean checkPermission(String permission) {
+        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
     /**
@@ -123,10 +167,6 @@ public class AddActivity extends AppCompatActivity {
         }
 
         return location;
-    }
-
-    private boolean checkPermission(String permission) {
-        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
     @Override
