@@ -27,7 +27,7 @@
 
         <!-- other activities -->
         <activity android:name=".AddActivity" />
-        <activity android:name=".Setting" />
+        <activity android:name=".SettingActivity" />
 
         <!-- database settings -->
         <meta-data android:name="DATABASE" android:value="test_database6.db" />
