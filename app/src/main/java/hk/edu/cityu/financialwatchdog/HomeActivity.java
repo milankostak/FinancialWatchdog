@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,6 +31,8 @@ import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
 
 public class HomeActivity extends AppCompatActivity {
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,15 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ////////////testing
+        //////////// tabs START
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        //////////// tabs END
+        //////////// testing START
         initPieChart();
         Button btnTestDB = (Button) findViewById(R.id.testDB);
         btnTestDB.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         Category.createMockCategories();
-        ///////////testing
+        /////////// testing END
     }
 
     private void testSettings() {
@@ -57,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void testDatabase() {
-        //Category.createMockCategories();
+        Category.createMockCategories();
         //Category cat = Category.findById(Category.class, 1);
 
         //Item item = new Item("Dumplings", new Date(), 22.165468f, 95.961654f, 59, cat);
@@ -75,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initPieChart() {
-        PieChart pieChart = (PieChart) findViewById(R.id.testChart);
+       /* PieChart pieChart = (PieChart) findViewById(R.id.testChart);
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(4f, 0));
@@ -102,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
 
         pieChart.animateY(1000);
 
-        //pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
+        //pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image*/
     }
 
     @Override
