@@ -16,6 +16,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="7dp"
             android:layout_marginLeft="7dp"
             android:layout_marginTop="30dp"
@@ -46,19 +47,30 @@
                 android:textColor="#000000"
                 android:textSize="25sp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btnReset"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="310dp"
-                android:background="@color/accent_material_light"
-                android:gravity="center"
-                android:onClick="resetuj"
-                android:text="@string/reset"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom">
+
+                    <Button
+                        android:id="@+id/btnReset"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@color/accent_material_light"
+                        android:gravity="center"
+                        android:onClick="resetuj"
+                        android:text="RESET"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:layout_marginRight="1dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -93,19 +105,23 @@
                 android:textColor="#BFBFBF"
                 android:textSize="10sp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
 
-            <Button
-                android:id="@+id/btnOk"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="310dp"
-                android:background="@color/accent_material_light"
-                android:gravity="center"
-                android:onClick="spocitejHodnotu"
-                android:text="@string/ok"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp" />
+                <Button
+                    android:id="@+id/btnOk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/accent_material_light"
+                    android:gravity="center"
+                    android:onClick="spocitejHodnotu"
+                    android:text="OK"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="1dp"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
