@@ -28,7 +28,7 @@
         <!-- other activities -->
         <activity android:name=".AddActivity" />
         <activity android:name=".SettingActivity" />
-
+        <activity android:name=".DetailActivity"/>
         <!-- database settings -->
         <meta-data android:name="DATABASE" android:value="test_database6.db" />
         <meta-data android:name="VERSION" android:value="9" />

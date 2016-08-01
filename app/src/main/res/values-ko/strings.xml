@@ -12,7 +12,7 @@
     <string name="time">Time</string>
     <string name="save">SAVE</string>
     <string name="add_expenditure">Add +</string>
-    <string name="test" translatable="false">T-E-S-T</string>
+    <string name="test">T-E-S-T</string>
     <string name="toast_insert_name">Insert name.</string>
     <string name="toast_select_category">Select a category.</string>
     <string name="toast_insert_price">Insert price.</string>

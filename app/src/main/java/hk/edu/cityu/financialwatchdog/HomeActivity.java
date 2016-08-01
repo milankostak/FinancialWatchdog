@@ -28,17 +28,24 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initTabs();
 
-        //////////// testing START
-        Button btnTestDB = (Button) findViewById(R.id.testDB);
-        btnTestDB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testDatabase();
-                testSettings();
-            }
-        });
-        Category.createMockCategories();
-        /////////// testing END
+/**
+ //////////// testing START
+ Button btnTestDB = (Button) findViewById(R.id.testDB);
+ btnTestDB.setOnClickListener(new View.OnClickListener() {
+@Override public void onClick(View v) {
+testDatabase();
+testSettings();
+}
+});
+ Category.createMockCategories();
+ /////////// testing END
+ */
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
@@ -108,5 +115,13 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new Intent(this, AddActivity.class);
         startActivity(i);
     }
+
+    public void detail(View v){
+        Log.i("clicks", "see detail");
+        Intent i = new Intent(this, DetailActivity.class);
+        startActivity(i);
+    }
+
+
 
 }
