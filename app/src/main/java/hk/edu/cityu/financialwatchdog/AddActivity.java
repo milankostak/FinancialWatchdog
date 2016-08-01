@@ -9,13 +9,19 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
@@ -23,12 +29,13 @@ import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
 
 public class AddActivity extends AppCompatActivity {
-
     private Spinner categorySpinner;
 
     private final int PERMISSIONS_REQUEST_LOCATION = 5;
     private boolean isLocationCheckingPermission = false;
     private Item item;
+    private Calendar dateCalendar;
+    private Calendar timeCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,67 @@ public class AddActivity extends AppCompatActivity {
     private void initComponents() {
         initCategorySpinner();
         initCurrencySpinner();
+        initDatePicker();
+        initTimePicker();
+    }
+
+    private void initDatePicker() {
+        final View dialogDateView = View.inflate(this, R.layout.pick_date_dialog, null);
+        final AlertDialog alertDateDialog = new AlertDialog.Builder(this).create();
+        final EditText etDate = (EditText) findViewById(R.id.etDate);
+
+        dialogDateView.findViewById(R.id.btnDateSet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatePicker datePicker = (DatePicker) dialogDateView.findViewById(R.id.addDatePicker);
+                int year = datePicker.getYear();
+                int month = datePicker.getMonth();
+                int day = datePicker.getDayOfMonth();
+
+                dateCalendar = Calendar.getInstance();
+                dateCalendar.set(year, month, day);
+
+                etDate.setText(day+"/"+month+"/"+year);
+                alertDateDialog.dismiss();
+            }
+        });
+
+        etDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDateDialog.setView(dialogDateView);
+                alertDateDialog.show();
+            }
+        });
+    }
+
+    private void initTimePicker() {
+        final View dialogTimeView = View.inflate(this, R.layout.pick_time_dialog, null);
+        final AlertDialog alertTimeDialog = new AlertDialog.Builder(this).create();
+        final EditText etTime = (EditText) findViewById(R.id.etTime);
+
+        dialogTimeView.findViewById(R.id.btnTimeSet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimePicker timePicker = (TimePicker) dialogTimeView.findViewById(R.id.addTimePicker);
+                int hour = timePicker.getCurrentHour();
+                int minute = timePicker.getCurrentMinute();
+
+                timeCalendar = Calendar.getInstance();
+                timeCalendar.set(0, 0, 0, hour, minute);
+
+                etTime.setText(hour+":"+(minute < 10 ? "0"+minute : minute));
+                alertTimeDialog.dismiss();
+            }});
+        etTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertTimeDialog.setView(dialogTimeView);
+                alertTimeDialog.show();
+            }
+        });
     }
 
     private void initCategorySpinner() {
@@ -77,7 +145,7 @@ public class AddActivity extends AppCompatActivity {
         // name
         EditText nameText = (EditText) findViewById(R.id.etName);
         String name = nameText.getText().toString();
-        if (name == null || name.equals("")) {
+        if (name.equals("")) {
             problem = true;
             makeToast(getResources().getString(R.string.toast_insert_name));
         }
