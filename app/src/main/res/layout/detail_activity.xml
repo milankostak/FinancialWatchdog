@@ -32,6 +32,17 @@
             android:layout_height="match_parent"
             android:layout_weight="3"/>
         <TextView
+            android:text="CATEGORY"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"/>
+        <TextView
             android:text="WHEN"
             android:gravity="center"
             android:paddingLeft="10dp"
@@ -53,7 +64,9 @@
             android:layout_weight="3" />
         <TextView
             android:text="$ PRICE"
+            android:textSize="10sp"
             android:gravity="center"
+            android:paddingTop="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -65,9 +78,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/listView"
         android:layout_below="@+id/linearLayout"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
 
