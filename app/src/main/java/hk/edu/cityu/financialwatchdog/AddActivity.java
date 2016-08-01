@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -21,23 +22,28 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
 
+/**
+ * Activity implementing page for inserts information about a single purchase and saving it with necessary data into database
+ */
 public class AddActivity extends AppCompatActivity {
-    private Spinner categorySpinner;
-
+    //work with permissions
     private final int PERMISSIONS_REQUEST_LOCATION = 5;
     private boolean isLocationCheckingPermission = false;
+
+    // components
+    private Spinner categorySpinner;
+    private EditText etDate, etTime;
+
+    //Item and calendars
     private Item item;
-    private Calendar dateCalendar;
-    private Calendar timeCalendar;
-    private EditText etDate;
-    private EditText etTime;
+    private Calendar dateCalendar, timeCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,33 +55,33 @@ public class AddActivity extends AppCompatActivity {
     private void initComponents() {
         initCategorySpinner();
         initCurrencySpinner();
-        initEditText();
+        initEditTexts();
         initDateTime();
         initDatePicker();
         initTimePicker();
-
     }
 
-    private void initEditText() {
+    private void initEditTexts() {
         etDate = (EditText) findViewById(R.id.etDate);
         etTime = (EditText) findViewById(R.id.etTime);
     }
 
+    /**
+     * Initialize content of date and time EditTexts
+     */
     private void initDateTime() {
         dateCalendar = Calendar.getInstance();
         dateCalendar.setTime(new Date());
-        int day = dateCalendar.get(Calendar.DAY_OF_MONTH);
-        int month = dateCalendar.get(Calendar.MONTH)+1;//!!!!!!!
-        int year = dateCalendar.get(Calendar.YEAR);
-        etDate.setText(day+"/"+month+"/"+year);
+        writeDateToInput(dateCalendar);
 
         timeCalendar = Calendar.getInstance();
         timeCalendar.setTime(new Date());
-        int hour = dateCalendar.get(Calendar.HOUR);
-        int minute = dateCalendar.get(Calendar.MINUTE);
-        etTime.setText(hour+":"+(minute < 10 ? "0"+minute : minute));
+        writeTimeToInput(timeCalendar);
     }
 
+    /**
+     * Initialize date picker and its dialog
+     */
     private void initDatePicker() {
         final View dialogDateView = View.inflate(this, R.layout.pick_date_dialog, null);
         final AlertDialog alertDateDialog = new AlertDialog.Builder(this).create();
@@ -91,8 +97,8 @@ public class AddActivity extends AppCompatActivity {
 
                 dateCalendar = Calendar.getInstance();
                 dateCalendar.set(year, month, day);
+                writeDateToInput(dateCalendar);
 
-                etDate.setText(day+"/"+month+"/"+year);
                 alertDateDialog.dismiss();
             }
         });
@@ -106,6 +112,9 @@ public class AddActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initialize time picker and its dialog
+     */
     private void initTimePicker() {
         final View dialogTimeView = View.inflate(this, R.layout.pick_time_dialog, null);
         final AlertDialog alertTimeDialog = new AlertDialog.Builder(this).create();
@@ -120,8 +129,8 @@ public class AddActivity extends AppCompatActivity {
 
                 timeCalendar = Calendar.getInstance();
                 timeCalendar.set(0, 0, 0, hour, minute);
+                writeTimeToInput(timeCalendar);
 
-                etTime.setText(hour+":"+(minute < 10 ? "0"+minute : minute));
                 alertTimeDialog.dismiss();
             }});
         etTime.setOnClickListener(new View.OnClickListener() {
@@ -194,10 +203,12 @@ public class AddActivity extends AppCompatActivity {
             }
         }
         if (!problem) {
-            //location
+            // location
             Location location = getLocation();
-            //TODO date
-            item = new Item(name, new Date(), location, price, category);
+            // date, time
+            Date dateTime = getDateTime();
+            // create item
+            item = new Item(name, dateTime, location, price, category);
 
             // if not showing dialog with asking for permission
             if (!isLocationCheckingPermission) {
@@ -260,6 +271,44 @@ public class AddActivity extends AppCompatActivity {
         return location;
     }
 
+    /**
+     * Returns combined date and time into one Date object for saving into database
+     * @return combined date and time
+     */
+    private Date getDateTime() {
+        int day = dateCalendar.get(Calendar.DAY_OF_MONTH);
+        int month = dateCalendar.get(Calendar.MONTH);
+        int year = dateCalendar.get(Calendar.YEAR);
+
+        int hour = timeCalendar.get(Calendar.HOUR_OF_DAY);
+        int minute = timeCalendar.get(Calendar.MINUTE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day, hour, minute);
+        calendar.setTimeZone(TimeZone.getDefault());
+        return calendar.getTime();
+    }
+
+    /**
+     * Writes date into date EditText with taking localization into consideration
+     * @param calendar calendar
+     */
+    private void writeDateToInput(Calendar calendar) {
+        java.text.DateFormat dateFormat = DateFormat.getDateFormat(getApplicationContext());
+        String date = dateFormat.format(calendar.getTime());
+        etDate.setText(date);
+    }
+
+    /**
+     * Writes time into time EditText with taking localization into consideration
+     * @param calendar calendar
+     */
+    private void writeTimeToInput(Calendar calendar) {
+        java.text.DateFormat timeFormat = DateFormat.getTimeFormat(getApplicationContext());
+        String time = timeFormat.format(calendar.getTime());
+        etTime.setText(time);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -284,7 +333,7 @@ public class AddActivity extends AppCompatActivity {
 
     /**
      * Adds location updates listener to catch latest changes in location
-     * Necessary when runnning on emulator
+     * Necessary when running on emulator
      * http://stackoverflow.com/questions/14784398/android-emulator-geo-fix-is-unable-to-set-gps-location
      * @param lm location manager
      */

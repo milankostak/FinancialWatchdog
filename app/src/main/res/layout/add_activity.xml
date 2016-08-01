@@ -72,7 +72,7 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="15dp"
-                        android:layout_weight="23"
+                        android:layout_weight="24"
                         android:gravity="center"
                         android:textColor="#BFBFBF"
                         android:textSize="25sp" />
@@ -101,11 +101,11 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="15dp"
-                        android:layout_weight="23"
+                        android:layout_weight="24"
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         android:textColor="#BFBFBF"
-                        android:textSize="20sp" />
+                        android:textSize="25sp" />
                 </TableRow>
 
                 <TableRow
@@ -130,14 +130,14 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:layout_weight="13"
+                        android:layout_weight="12"
                         android:clickable="true"
                         android:cursorVisible="false"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:gravity="center"
                         android:textColor="#BFBFBF"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/etTime"
@@ -145,10 +145,14 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="15dp"
-                        android:layout_weight="10"
+                        android:layout_weight="12"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:gravity="center"
                         android:textColor="#BFBFBF"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
             </TableLayout>
