@@ -40,6 +40,9 @@ class DetailListAdapter extends ArrayAdapter<Item> {
         TextView whatView = (TextView) convertView.findViewById(R.id.tvWhat);
         whatView.setText(item.getName());
 
+        TextView categoryView = (TextView) convertView.findViewById(R.id.tvCategory);
+        categoryView.setText(item.getCategory().getName());
+
         TextView whenView = (TextView) convertView.findViewById(R.id.tvWhen);
         whenView.setText(item.getTime().toString());
 
