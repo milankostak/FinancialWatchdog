@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,6 +34,11 @@ import hk.edu.cityu.financialwatchdog.entity.Settings;
  * Activity implementing page for inserts information about a single purchase and saving it with necessary data into database
  */
 public class AddActivity extends AppCompatActivity {
+
+    public static final String EDIT_PARAMETER = "editParameter";
+    public static final String ID_PARAMETER = "idParameter";
+    private boolean isEditing;
+
     //work with permissions
     private final int PERMISSIONS_REQUEST_LOCATION = 5;
     private boolean isLocationCheckingPermission = false;
@@ -49,6 +55,7 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_activity);
+        isEditing = getIntent().getExtras().getBoolean(EDIT_PARAMETER);
         initComponents();
     }
 
@@ -59,6 +66,42 @@ public class AddActivity extends AppCompatActivity {
         initDateTime();
         initDatePicker();
         initTimePicker();
+        isEditing = getIntent().getExtras().getBoolean(EDIT_PARAMETER);
+        if (isEditing) initEditing();
+    }
+
+    private void initEditing() {
+
+        Button btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnDelete.setVisibility(View.VISIBLE);
+        long id = getIntent().getExtras().getLong(ID_PARAMETER);
+        item = Item.findById(Item.class, id);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                item.delete();
+                finish();
+            }
+        });
+
+        //Object obj = categorySpinner.getSelectedItem();
+        //Category category = Category.findByName(obj.toString());
+        //categorySpinner.set
+
+        EditText nameText = (EditText) findViewById(R.id.etName);
+        nameText.setText(item.getName());
+
+        EditText priceText = (EditText) findViewById(R.id.etPrice);
+        priceText.setText(Double.toString(item.getPrice()));
+
+        dateCalendar = Calendar.getInstance();
+        dateCalendar.setTime(item.getTime());
+        writeDateToInput(dateCalendar);
+
+        timeCalendar = Calendar.getInstance();
+        timeCalendar.setTime(item.getTime());
+        writeTimeToInput(timeCalendar);
     }
 
     private void initEditTexts() {
@@ -208,7 +251,14 @@ public class AddActivity extends AppCompatActivity {
             // date, time
             Date dateTime = getDateTime();
             // create item
-            item = new Item(name, dateTime, location, price, category);
+            if (isEditing) {
+                item.setName(name);
+                item.setTime(dateTime);
+                item.setPrice(price);
+                item.setCategory(category);
+            } else {
+                item = new Item(name, dateTime, location, price, category);
+            }
 
             // if not showing dialog with asking for permission
             if (!isLocationCheckingPermission) {
@@ -358,4 +408,3 @@ public class AddActivity extends AppCompatActivity {
     }
 
 }
-

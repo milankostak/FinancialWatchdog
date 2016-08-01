@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         settings.setTotalLimit(123456);
     }
 
-    private void testDatabase() {
+    public static void testDatabase() {
         Category.createMockCategories();
         //Category cat = Category.findById(Category.class, 1);
 
@@ -110,6 +110,7 @@ public class HomeActivity extends AppCompatActivity {
     public void addThing(View v) {
         Log.i("clicks", "You add a record.");
         Intent i = new Intent(this, AddActivity.class);
+        i.putExtra(AddActivity.EDIT_PARAMETER, false);
         startActivity(i);
     }
 

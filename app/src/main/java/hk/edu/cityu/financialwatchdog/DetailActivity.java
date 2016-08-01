@@ -1,18 +1,23 @@
 package hk.edu.cityu.financialwatchdog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import hk.edu.cityu.financialwatchdog.entity.Item;
 
@@ -27,15 +32,13 @@ class DetailListAdapter extends ArrayAdapter<Item> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.detail_row, parent, false);
         }
 
         Item item = getItem(position);
-
-        TextView indexView = (TextView) convertView.findViewById(R.id.tvIndex);
-        indexView.setText(String.valueOf(position + 1));
 
         TextView whatView = (TextView) convertView.findViewById(R.id.tvWhat);
         whatView.setText(item.getName());
@@ -44,40 +47,62 @@ class DetailListAdapter extends ArrayAdapter<Item> {
         categoryView.setText(item.getCategory().getName());
 
         TextView whenView = (TextView) convertView.findViewById(R.id.tvWhen);
-        whenView.setText(item.getTime().toString());
-
-        TextView whereView = (TextView) convertView.findViewById(R.id.tvWhere);
-        whereView.setText("(" + item.getLongitude() + "," + item.getLatitude() + ")");
+        java.text.DateFormat timeFormat = DateFormat.getDateFormat(getContext());
+        timeFormat.setNumberFormat(NumberFormat.getNumberInstance(Locale.getDefault()));
+        String time = timeFormat.format(item.getTime());
+        whenView.setText(time);
 
         TextView priceView = (TextView) convertView.findViewById(R.id.tvPrice);
         priceView.setText(String.valueOf(item.getPrice()));
 
         return convertView;
     }
+
 }
 
 public class DetailActivity extends AppCompatActivity {
-    List<Item> items;
-    ListView listView;
-    DetailListAdapter adapter;
+    private List<Item> items;
+    private ListView listView;
+    private DetailListAdapter adapter;
 
+    private static final int RESULT_PARAMETER = 31;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_PARAMETER) {
+            HomeActivity.testDatabase();
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
         listView = (ListView) findViewById(R.id.listView);
-        items = new ArrayList<>();
 
+        items = new ArrayList<>();
         adapter = new DetailListAdapter(this, items);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Item item = adapter.getItem(position);
+                Intent i = new Intent(DetailActivity.this, AddActivity.class);
+                i.putExtra(AddActivity.EDIT_PARAMETER, true);
+                i.putExtra(AddActivity.ID_PARAMETER, item.getId());
+                startActivityForResult(i, RESULT_PARAMETER);
+            }
+        });
 
         retrieveData();
     }
 
-
     public void retrieveData() {
-        Iterator<Item> items = Item.findAll(Item.class);
-        while (items.hasNext()) {
-            this.items.add(items.next());
+        Iterator<Item> itemsLocal = Item.findAll(Item.class);
+        while (itemsLocal.hasNext()) {
+            items.add(itemsLocal.next());
         }
 
         adapter.notifyDataSetChanged();

@@ -16,16 +16,6 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
             android:paddingBottom="2dp"
@@ -56,17 +46,6 @@
             android:paddingRight="10dp"
             android:paddingTop="10dp"
             android:text="WHEN" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:text="WHERE" />
 
         <TextView
             android:layout_width="0dp"
