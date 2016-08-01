@@ -37,7 +37,7 @@
                 android:background="@color/accent_material_light"
                 android:gravity="center"
                 android:onClick="addThing"
-                android:text="Add + "
+                android:text="@string/add_expenditure"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
@@ -59,7 +59,7 @@
                 android:background="@color/accent_material_light"
                 android:gravity="center"
                 android:onClick="detail"
-                android:text="TOTAL"
+                android:text="@string/total"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
         </LinearLayout>

@@ -64,7 +64,7 @@
                         android:background="@color/accent_material_light"
                         android:gravity="center"
                         android:onClick="resetuj"
-                        android:text="RESET"
+                        android:text="@string/reset"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
                         android:layout_marginRight="1dp"/>
@@ -117,7 +117,7 @@
                     android:background="@color/accent_material_light"
                     android:gravity="center"
                     android:onClick="spocitejHodnotu"
-                    android:text="OK"
+                    android:text="@string/ok"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:layout_marginLeft="1dp"/>
