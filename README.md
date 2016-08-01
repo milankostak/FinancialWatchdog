@@ -5,7 +5,7 @@ Financial watchdog project during second part of Hong Kong summer school program
 + piechart customizations
 + settings
 	+ **backend**
-	+ layout
+	+ _layout_
 + currency
 	+ find API - Milan will do
 	+ save data, (somehow) give user options
@@ -15,12 +15,12 @@ Financial watchdog project during second part of Hong Kong summer school program
 	+ _missing date - Milan working_
 	+ missing selection currency
 	+ _layout fixes - Kate working_
-+ _tab layout on home activity for piechart - Matej working_
-+ layout of home activity
++ **tab layout on home activity for piechart**
++ _layout of home activity - Kate working_
 + layout of list of items
-+ layout of item detail layout of 
++ _layout of item detail - Denise working_
 + categories
 	+ **backend**
 	+ layout for CRUD operations
-+ string.xml
-+ localization (Trad. Chinese, Czech, what else do you speak?)
++ _string.xml - Matej working_
++ _localization (Trad. Chinese, Czech, what else do you speak?) - Matej working_
