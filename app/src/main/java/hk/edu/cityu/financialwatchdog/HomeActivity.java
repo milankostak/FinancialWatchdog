@@ -2,10 +2,7 @@ package hk.edu.cityu.financialwatchdog;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,24 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
 
 public class HomeActivity extends AppCompatActivity {
-    TabLayout tabLayout;
-    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +26,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        initTabs();
 
-        //////////// tabs START
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
-
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-        //////////// tabs END
         //////////// testing START
-        initPieChart();
         Button btnTestDB = (Button) findViewById(R.id.testDB);
         btnTestDB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +39,21 @@ public class HomeActivity extends AppCompatActivity {
         });
         Category.createMockCategories();
         /////////// testing END
+    }
+
+    /**
+     * Initialization of tab layout with pie charts
+     */
+    private void initTabs() {
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+        // remembers 2 pages that are not visible
+        viewPager.setOffscreenPageLimit(2);
     }
 
     private void testSettings() {
@@ -87,37 +80,6 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void initPieChart() {
-       /* PieChart pieChart = (PieChart) findViewById(R.id.testChart);
-
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(12f, 3));
-        entries.add(new Entry(18f, 4));
-        entries.add(new Entry(90f, 5));
-
-        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
-
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-
-        PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-        pieChart.setDescription("Description");
-        pieChart.setData(data);
-
-        pieChart.animateY(1000);
-
-        //pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image*/
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -136,7 +98,6 @@ public class HomeActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent i = new Intent(this, SettingActivity.class);
             startActivity(i);
-            //return true;
         }
 
         return super.onOptionsItemSelected(item);
