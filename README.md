@@ -3,7 +3,7 @@ Financial watchdog project during second part of Hong Kong summer school program
 
 # TODO list
 + _piechart customizations - Matej working_
-+ settings
++ **settings**
 	+ **backend**
 	+ **layout**
 + currency
@@ -17,9 +17,11 @@ Financial watchdog project during second part of Hong Kong summer school program
 	+ **layout fixes**
 + **tab layout on home activity for piechart**
 + **layout of home activity**
-+ _layout of list of items - Denise working_
-+ layout of item detail
++ **layout of list of items**
++ **layout of item detail**
++ **editing of item**
 + categories
 	+ **backend**
 	+ layout for CRUD operations
 + **string.xml and localization - _Matej will keep updated_**
++ About page
