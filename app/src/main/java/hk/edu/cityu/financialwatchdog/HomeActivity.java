@@ -28,19 +28,16 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initTabs();
 
-/**
- //////////// testing START
- Button btnTestDB = (Button) findViewById(R.id.testDB);
- btnTestDB.setOnClickListener(new View.OnClickListener() {
-@Override public void onClick(View v) {
-testDatabase();
-testSettings();
-}
-});
- Category.createMockCategories();
- /////////// testing END
- */
-
+        //////////// testing START
+        /*Button btnTestDB = (Button) findViewById(R.id.moreDetails);
+        btnTestDB.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                testDatabase();
+                testSettings();
+            }
+        });*/
+        Category.createMockCategories();
+        /////////// testing END
     }
 
     @Override

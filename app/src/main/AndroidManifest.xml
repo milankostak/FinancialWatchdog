@@ -26,7 +26,8 @@
         </activity>
 
         <!-- other activities -->
-        <activity android:name=".AddActivity" />
+        <activity android:name=".AddActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".DetailActivity"/>
         <!-- database settings -->
