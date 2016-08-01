@@ -21,6 +21,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -40,13 +41,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/detail"
-        android:text="Detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="detail"/>
-</LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +58,7 @@
                 android:layout_marginRight="5dp"
                 android:background="@color/accent_material_light"
                 android:gravity="center"
-                android:onClick="addThing"
+                android:onClick="detail"
                 android:text="TOTAL"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
