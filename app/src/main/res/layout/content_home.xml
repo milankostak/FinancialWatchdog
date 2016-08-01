@@ -29,4 +29,10 @@
         android:layout_height="wrap_content"
         android:onClick="addThing"/>
 
+    <Button
+        android:id="@+id/detail"
+        android:text="Detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="detail"/>
 </LinearLayout>

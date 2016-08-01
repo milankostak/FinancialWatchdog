@@ -41,6 +41,11 @@ public class HomeActivity extends AppCompatActivity {
         /////////// testing END
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     /**
      * Initialization of tab layout with pie charts
      */
@@ -108,5 +113,13 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new Intent(this, AddActivity.class);
         startActivity(i);
     }
+
+    public void detail(View v){
+        Log.i("clicks", "see detail");
+        Intent i = new Intent(this, DetailActivity.class);
+        startActivity(i);
+    }
+
+
 
 }
