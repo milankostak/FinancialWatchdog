@@ -9,60 +9,42 @@
     tools:context=".HomeActivity"
     tools:showIn="@layout/activity_home">
 
-    <!-- Base application theme. <Button
-        android:id="@+id/testDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test DB load" /> -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <Button
+            android:id="@+id/add"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/accent_material_light"
+            android:gravity="center"
+            android:onClick="addThing"
+            android:text="@string/add_expenditure"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/add"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="2dp"
-                android:background="@color/accent_material_light"
-                android:gravity="center"
-                android:onClick="addThing"
-                android:text="@string/add_expenditure"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <Button
+            android:id="@+id/moreDetails"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/moreDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/accent_material_light"
-                android:gravity="center"
-                android:onClick="detail"
-                android:text="@string/total"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/accent_material_light"
+            android:gravity="center"
+            android:onClick="detail"
+            android:text="@string/total"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </RelativeLayout>

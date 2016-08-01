@@ -30,7 +30,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         title[0] = resources.getString( R.string.day );
         title[1] = resources.getString( R.string.week );
         title[2] = resources.getString( R.string.month );
-        //title[3] = Resources.getSystem().getString( R.string.total );
+        //title[3] = resources.getString( R.string.total );
     }
 
     @Override

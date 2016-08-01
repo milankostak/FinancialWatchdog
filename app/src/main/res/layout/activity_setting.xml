@@ -61,13 +61,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
+                        android:layout_marginRight="1dp"
                         android:background="@color/accent_material_light"
                         android:gravity="center"
                         android:onClick="resetuj"
                         android:text="@string/reset"
                         android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:layout_marginRight="1dp"/>
+                        android:textSize="20sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -114,13 +114,13 @@
                     android:id="@+id/btnOk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
                     android:background="@color/accent_material_light"
                     android:gravity="center"
                     android:onClick="spocitejHodnotu"
                     android:text="@string/ok"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="1dp"/>
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
