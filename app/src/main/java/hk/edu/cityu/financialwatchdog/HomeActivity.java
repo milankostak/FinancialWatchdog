@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
     private void initTabs() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager(), getResources());
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
