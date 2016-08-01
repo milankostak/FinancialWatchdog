@@ -2,25 +2,24 @@
 Financial watchdog project during second part of Hong Kong summer school program
 
 # TODO list
-+ piechart customizations
++ _piechart customizations - Matej working_
 + settings
 	+ **backend**
-	+ _layout_
+	+ **layout**
 + currency
 	+ find API - Milan will do
 	+ save data, (somehow) give user options
 	+ think through
 + adding items
 	+ **missing location**
-	+ _missing date - Milan working_
+	+ **missing date**
 	+ missing selection currency
-	+ _layout fixes - Kate working_
+	+ **layout fixes**
 + **tab layout on home activity for piechart**
-+ _layout of home activity - Kate working_
-+ layout of list of items
-+ _layout of item detail - Denise working_
++ **layout of home activity**
++ _layout of list of items - Denise working_
++ layout of item detail
 + categories
 	+ **backend**
 	+ layout for CRUD operations
-+ _string.xml - Matej working_
-+ _localization (Trad. Chinese, Czech, what else do you speak?) - Matej working_
++ **string.xml and localization - _Matej will keep updated_**
