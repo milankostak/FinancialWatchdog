@@ -36,6 +36,8 @@ public class AddActivity extends AppCompatActivity {
     private Item item;
     private Calendar dateCalendar;
     private Calendar timeCalendar;
+    private EditText etDate;
+    private EditText etTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +49,36 @@ public class AddActivity extends AppCompatActivity {
     private void initComponents() {
         initCategorySpinner();
         initCurrencySpinner();
+        initEditText();
+        initDateTime();
         initDatePicker();
         initTimePicker();
+
+    }
+
+    private void initEditText() {
+        etDate = (EditText) findViewById(R.id.etDate);
+        etTime = (EditText) findViewById(R.id.etTime);
+    }
+
+    private void initDateTime() {
+        dateCalendar = Calendar.getInstance();
+        dateCalendar.setTime(new Date());
+        int day = dateCalendar.get(Calendar.DAY_OF_MONTH);
+        int month = dateCalendar.get(Calendar.MONTH)+1;//!!!!!!!
+        int year = dateCalendar.get(Calendar.YEAR);
+        etDate.setText(day+"/"+month+"/"+year);
+
+        timeCalendar = Calendar.getInstance();
+        timeCalendar.setTime(new Date());
+        int hour = dateCalendar.get(Calendar.HOUR);
+        int minute = dateCalendar.get(Calendar.MINUTE);
+        etTime.setText(hour+":"+(minute < 10 ? "0"+minute : minute));
     }
 
     private void initDatePicker() {
         final View dialogDateView = View.inflate(this, R.layout.pick_date_dialog, null);
         final AlertDialog alertDateDialog = new AlertDialog.Builder(this).create();
-        final EditText etDate = (EditText) findViewById(R.id.etDate);
 
         dialogDateView.findViewById(R.id.btnDateSet).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +109,6 @@ public class AddActivity extends AppCompatActivity {
     private void initTimePicker() {
         final View dialogTimeView = View.inflate(this, R.layout.pick_time_dialog, null);
         final AlertDialog alertTimeDialog = new AlertDialog.Builder(this).create();
-        final EditText etTime = (EditText) findViewById(R.id.etTime);
 
         dialogTimeView.findViewById(R.id.btnTimeSet).setOnClickListener(new View.OnClickListener() {
             @Override
