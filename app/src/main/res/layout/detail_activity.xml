@@ -13,7 +13,6 @@
         android:layout_alignParentTop="true"
         android:id="@+id/linearLayout">
         <TextView
-            android:text="Index"
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
