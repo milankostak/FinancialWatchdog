@@ -18,13 +18,13 @@
 
     <Button
         android:id="@+id/testDB"
-        android:text="test DB load"
+        android:text="@string/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/add"
-        android:text="Add + "
+        android:text="@string/add_expenditure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addThing"/>

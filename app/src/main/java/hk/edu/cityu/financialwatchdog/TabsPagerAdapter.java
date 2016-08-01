@@ -1,4 +1,5 @@
 package hk.edu.cityu.financialwatchdog;
+import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,11 +12,13 @@ import hk.edu.cityu.financialwatchdog.fragments.PageFragmentMonth;
 import hk.edu.cityu.financialwatchdog.fragments.PageFragmentWeek;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
+
     private List<Fragment> fragments;
     private final String[] title = {
-            "Day",
-            "Week",
-            "Month"
+            Resources.getSystem().getString( R.string.day ),
+            Resources.getSystem().getString( R.string.week ),
+            Resources.getSystem().getString( R.string.month )
+            //Resources.getSystem().getString( R.string.total )
     };
 
     public TabsPagerAdapter(FragmentManager fm) {

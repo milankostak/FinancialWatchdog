@@ -31,7 +31,7 @@
                 android:background="#FFFFFF"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="left|fill_vertical"
-                android:text="Total Budget"
+                android:text="@string/total_budget"
                 android:textColor="#000000"
                 android:textSize="25sp" />
 
@@ -42,7 +42,7 @@
                 android:background="#FFFFFF"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="left|fill_vertical"
-                android:text="Total Time Left"
+                android:text="@string/total_time_left"
                 android:textColor="#000000"
                 android:textSize="25sp" />
 
@@ -56,7 +56,7 @@
                 android:background="@color/accent_material_light"
                 android:gravity="center"
                 android:onClick="resetuj"
-                android:text="RESET"
+                android:text="@string/reset"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp" />
 
@@ -103,7 +103,7 @@
                 android:background="@color/accent_material_light"
                 android:gravity="center"
                 android:onClick="spocitejHodnotu"
-                android:text="OK"
+                android:text="@string/ok"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp" />
         </LinearLayout>

@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +23,7 @@ import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
 
 public class AddActivity extends AppCompatActivity {
+
     private Spinner categorySpinner;
 
     private final int PERMISSIONS_REQUEST_LOCATION = 5;
@@ -79,14 +79,14 @@ public class AddActivity extends AppCompatActivity {
         String name = nameText.getText().toString();
         if (name == null || name.equals("")) {
             problem = true;
-            makeToast("Insert name.");
+            makeToast(getResources().getString(R.string.toast_insert_name));
         }
         //category
         Object obj = categorySpinner.getSelectedItem();
         Category category = Category.findByName(obj.toString());
         if (category == null) {
             problem = true;
-            makeToast("Select a category.");
+            makeToast(getResources().getString(R.string.toast_select_category));
         }
         //price
         EditText priceText = (EditText) findViewById(R.id.etPrice);
@@ -94,12 +94,12 @@ public class AddActivity extends AppCompatActivity {
         double price = 0;
         if (priceString == null || priceString.equals("")) {
             problem = true;
-            makeToast("Insert price.");
+            makeToast(getResources().getString(R.string.toast_insert_price));
         } else {
             price = Double.parseDouble(priceString);
             if (price < 0) {
                 problem = true;
-                makeToast("Insert positive price.");
+                makeToast(getResources().getString(R.string.toast_insert_positive_price));
             }
         }
         if (!problem) {

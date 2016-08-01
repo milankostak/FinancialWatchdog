@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Hlídač výdajů</string>
+    <string name="action_settings">Nastavení</string>
+    <string name="total_budget">Celkový rozpočet</string>
+    <string name="total_time_left">Celkový zbývající čas</string>
+    <string name="reset">RESET</string>
+    <string name="ok">OK</string>
+    <string name="category">Kategorie</string>
+    <string name="currency">Měna</string>
+    <string name="expenditure">Výdaj</string>
+    <string name="price">Cena</string>
+    <string name="time">Čas</string>
+    <string name="save">Uložit</string>
+    <string name="add_expenditure">Přidat výdaj</string>
+    <string name="test">T-E-S-T</string>
+    <string name="toast_insert_name">Vložte prosím jméno.</string>
+    <string name="toast_select_category">Vyberte prosím kategorii.</string>
+    <string name="toast_insert_price">Vložte prosím cenu.</string>
+    <string name="toast_insert_positive_price">Vložte prosím pozitivní cenu.</string>
+    <string name="day">Den</string>
+    <string name="week">Týden</string>
+    <string name="month">Měsíc</string>
+    <string name="total">Celkově</string>
+</resources>

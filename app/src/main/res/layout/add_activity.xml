@@ -23,7 +23,7 @@
             android:background="#FFFFFF"
             android:fontFamily="sans-serif-thin"
             android:gravity="left|fill_vertical"
-            android:text="Cathegory"
+            android:text="@string/category"
             android:textColor="#424242"
             android:textSize="15sp" />
 
@@ -68,7 +68,7 @@
                     android:fontFamily="sans-serif-thin"
                     android:gravity="left|fill_vertical"
                     android:paddingLeft="15dp"
-                    android:text="Name"
+                    android:text="@string/expenditure"
                     android:textColor="#000000"
                     android:textSize="25sp" />
 
@@ -97,7 +97,7 @@
                     android:fontFamily="sans-serif-thin"
                     android:gravity="left|fill_vertical"
                     android:paddingLeft="15dp"
-                    android:text="Price"
+                    android:text="@string/price"
                     android:textColor="#000000"
                     android:textSize="25sp" />
 
@@ -127,7 +127,7 @@
                     android:fontFamily="sans-serif-thin"
                     android:gravity="left|fill_vertical"
                     android:paddingLeft="15dp"
-                    android:text="Time"
+                    android:text="@string/time"
                     android:textColor="#000000"
                     android:textSize="25sp" />
 
@@ -154,7 +154,7 @@
             android:layout_marginTop="60dp"
             android:background="@color/accent_material_light"
             android:onClick="saveItem"
-            android:text="SAVE"
+            android:text="@string/save"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
     </LinearLayout>
