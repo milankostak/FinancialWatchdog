@@ -36,9 +36,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == UPDATE_PARAMETER) {
-            ((PageFragmentDay) tabsAdapter.fragments.get(0)).update();
-            ((PageFragmentWeek) tabsAdapter.fragments.get(1)).update();
-            ((PageFragmentMonth) tabsAdapter.fragments.get(2)).update();
+            ((PageFragmentToday) tabsAdapter.fragments.get(0)).update();
+            ((PageFragmentYesterday) tabsAdapter.fragments.get(1)).update();
+            ((PageFragmentWeek) tabsAdapter.fragments.get(2)).update();
+            ((PageFragmentMonth) tabsAdapter.fragments.get(3)).update();
         }
     }
 
@@ -53,8 +54,8 @@ public class HomeActivity extends AppCompatActivity {
         viewPager.setAdapter(tabsAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        // remembers 2 pages that are not visible
-        viewPager.setOffscreenPageLimit(2);
+        // remembers 3 pages that are not visible
+        viewPager.setOffscreenPageLimit(tabsAdapter.fragments.size() - 1);
     }
 
     public static void createMockDatabaseData() {

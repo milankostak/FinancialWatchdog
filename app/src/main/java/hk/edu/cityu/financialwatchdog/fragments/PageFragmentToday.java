@@ -17,18 +17,18 @@ import hk.edu.cityu.financialwatchdog.R;
 /**
  * Fragment displaying pie chart for today
  */
-public class PageFragmentDay extends Fragment {
+public class PageFragmentToday extends Fragment {
 
     private PieChart pieChart;
 
-    public PageFragmentDay() {
+    public PageFragmentToday() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.page_fragment_day, container, false);
-        pieChart = (PieChart) rootView.findViewById(R.id.pieChartDay);
+        View rootView = inflater.inflate(R.layout.page_fragment_today, container, false);
+        pieChart = (PieChart) rootView.findViewById(R.id.pieChartToday);
         initPieChart();
         return rootView;
     }

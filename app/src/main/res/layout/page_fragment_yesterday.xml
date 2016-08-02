@@ -4,7 +4,7 @@
     android:layout_height="fill_parent">
 
     <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChartDay"
+        android:id="@+id/pieChartYesterday"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="#FFFFFF"
