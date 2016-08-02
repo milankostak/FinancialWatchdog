@@ -161,7 +161,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void detail(View v){
         Log.i("clicks", "see detail");
-        Intent i = new Intent(this, DetailActivity.class);
+        Intent i = new Intent(this, ItemListActivity.class);
         startActivityForResult(i, UPDATE_PARAMETER);
     }
 

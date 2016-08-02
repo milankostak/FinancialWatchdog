@@ -29,7 +29,7 @@
         <activity android:name=".AddActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".DetailActivity"/>
+        <activity android:name=".ItemListActivity"/>
         <activity android:name=".CategoryListActivity"/>
         <activity android:name=".AboutActivity"/>
 

@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tvWhat"
+        android:id="@+id/tvItemWhat"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif-thin" />
 
     <TextView
-        android:id="@+id/tvCategory"
+        android:id="@+id/tvItemCategory"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
@@ -29,10 +29,9 @@
         android:fontFamily="sans-serif-thin" />
 
     <TextView
-        android:id="@+id/tvWhen"
+        android:id="@+id/tvItemTime"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_column="3"
         android:layout_weight="3"
         android:gravity="center"
         android:paddingBottom="2dp"
@@ -42,7 +41,7 @@
         android:fontFamily="sans-serif-thin" />
 
     <TextView
-        android:id="@+id/tvPrice"
+        android:id="@+id/tvItemPrice"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"

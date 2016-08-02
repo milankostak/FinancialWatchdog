@@ -23,10 +23,10 @@ import hk.edu.cityu.financialwatchdog.entity.Item;
  * Created by Weida on 2016/7/29.
  * show detail about each spend record
  */
-class DetailListAdapter extends ArrayAdapter<Item> {
+class ItemListAdapter extends ArrayAdapter<Item> {
 
-    public DetailListAdapter(Context context, List<Item> items) {
-        super(context, R.layout.detail_row, items);
+    public ItemListAdapter(Context context, List<Item> items) {
+        super(context, R.layout.item_list_row, items);
     }
 
     @Override
@@ -34,36 +34,35 @@ class DetailListAdapter extends ArrayAdapter<Item> {
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.detail_row, parent, false);
+            convertView = inflater.inflate(R.layout.item_list_row, parent, false);
         }
 
         Item item = getItem(position);
 
-        TextView whatView = (TextView) convertView.findViewById(R.id.tvWhat);
-        whatView.setText(item.getSubject());
+        TextView tvItemWhat = (TextView) convertView.findViewById(R.id.tvItemWhat);
+        tvItemWhat.setText(item.getSubject());
 
-        TextView categoryView = (TextView) convertView.findViewById(R.id.tvCategory);
-        categoryView.setText(item.getCategory().getName());
+        TextView tvItemCategory = (TextView) convertView.findViewById(R.id.tvItemCategory);
+        tvItemCategory.setText(item.getCategory().getName());
 
-        TextView whenView = (TextView) convertView.findViewById(R.id.tvWhen);
+        TextView tvItemTime = (TextView) convertView.findViewById(R.id.tvItemTime);
         java.text.DateFormat timeFormat = DateFormat.getDateFormat(getContext());
         timeFormat.setNumberFormat(NumberFormat.getNumberInstance(Locale.getDefault()));
         String time = timeFormat.format(item.getTime());
-        whenView.setText(time);
+        tvItemTime.setText(time);
 
-        TextView priceView = (TextView) convertView.findViewById(R.id.tvPrice);
-        priceView.setText(String.valueOf(item.getPrice()));
+        TextView tvItemPrice = (TextView) convertView.findViewById(R.id.tvItemPrice);
+        tvItemPrice.setText(String.valueOf(item.getPrice()));
 
         return convertView;
     }
-
 }
 
-public class DetailActivity extends AppCompatActivity {
+public class ItemListActivity extends AppCompatActivity {
 
     private List<Item> items;
     private ListView listView;
-    private DetailListAdapter adapter;
+    private ItemListAdapter adapter;
 
     private static final int RESULT_PARAMETER = 31;
 
@@ -78,14 +77,14 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_activity);
-        listView = (ListView) findViewById(R.id.listView);
+        setContentView(R.layout.item_list_activity);
+        listView = (ListView) findViewById(R.id.itemListView);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Item item = adapter.getItem(position);
-                Intent i = new Intent(DetailActivity.this, AddActivity.class);
+                Intent i = new Intent(ItemListActivity.this, AddActivity.class);
                 i.putExtra(AddActivity.EDIT_PARAMETER, true);
                 i.putExtra(AddActivity.ID_PARAMETER, item.getId());
                 startActivityForResult(i, RESULT_PARAMETER);
@@ -96,8 +95,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void update() {
-        items = Item.findAll();
-        adapter = new DetailListAdapter(this, items);
+        items = Item.listAll();
+        adapter = new ItemListAdapter(this, items);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
