@@ -10,9 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
-import java.util.Iterator;
+import java.util.Calendar;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
@@ -27,17 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initTabs();
-
-        //////////// testing START
-        /*Button btnTestDB = (Button) findViewById(R.id.moreDetails);
-        btnTestDB.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                testDatabase();
-                testSettings();
-            }
-        });*/
-        Category.createMockCategories();
-        /////////// testing END
+        testDatabase();
     }
 
     @Override
@@ -67,21 +56,56 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public static void testDatabase() {
-        Category.createMockCategories();
-        //Category cat = Category.findById(Category.class, 1);
+        if (Category.findAll().size() == 0) {
+            Category.createMockCategories();
+            Category cat = Category.findByName("Food");
+            Calendar cal = Calendar.getInstance();
 
-        //Item item = new Item("Dumplings", new Date(), 22.165468f, 95.961654f, 59, cat);
-        //item.save();
+            cal.set(2016, 8, 2, 8, 23);
+            new Item("Breakfast", cal.getTime(), 22f, 95f, 20, cat).save();
+            cal.set(2016, 8, 2, 14, 23);
+            new Item("Lunch", cal.getTime(), 22f, 95f, 18, cat).save();
+            cal.set(2016, 8, 2, 19, 23);
+            new Item("Dinner", cal.getTime(), 22f, 95f, 27, cat).save();
+            cal.set(2016, 8, 1, 7, 23);
+            new Item("Breakfast", cal.getTime(), 22f, 95f, 10, cat).save();
+            cal.set(2016, 8, 1, 13, 23);
+            new Item("Lunch", cal.getTime(), 22f, 95f, 39, cat).save();
+            cal.set(2016, 8, 1, 16, 23);
+            new Item("Banana", cal.getTime(), 22f, 95f, 2.5, cat).save();
+            cal.set(2016, 8, 1, 18, 23);
+            new Item("Dinner", cal.getTime(), 22f, 95f, 26, cat).save();
+            cal.set(2016, 7, 31, 13, 23);
+            new Item("Lunch", cal.getTime(), 22f, 95f, 28, cat).save();
+            cal.set(2016, 7, 31, 18, 23);
+            new Item("Dinner", cal.getTime(), 22f, 95f, 32, cat).save();
 
-        /*List<Item> items = cat.getItems();
-        for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).toString());
-        }*/
-        Iterator<Item> items = Item.findAll(Item.class);
-        while (items.hasNext()) {
-            System.out.println(items.next().toString());
+            cat = Category.findByName("Transportation");
+            cal.set(2016, 8, 1, 18, 23);
+            new Item("MTR", cal.getTime(), 22f, 95f, 5.5, cat).save();
+            new Item("MTR", cal.getTime(), 22f, 95f, 6, cat).save();
+
+            cat = Category.findByName("Fun");
+            cal.set(2016, 8, 1, 18, 23);
+            new Item("Beer", cal.getTime(), 22f, 95f, 9, cat).save();
+            new Item("Ice cream", cal.getTime(), 22f, 95f, 9, cat).save();
+
+            cat = Category.findByName("Clothes");
+            cal.set(2016, 7, 31, 18, 23);
+            new Item("Flip flops", cal.getTime(), 22f, 95f, 50, cat).save();
+
+            //cat = Category.findByName("Culture");
+
+            cat = Category.findByName("Household");
+            cal.set(2016, 8, 2, 18, 23);
+            new Item("Laundry", cal.getTime(), 22f, 95f, 10, cat).save();
+            cal.set(2016, 7, 29, 18, 23);
+            new Item("Laundry", cal.getTime(), 22f, 95f, 10, cat).save();
+            cal.set(2016, 8, 1, 18, 23);
+            new Item("Air-con", cal.getTime(), 22f, 95f, 20, cat).save();
+            cal.set(2016, 7, 30, 18, 23);
+            new Item("Air-con", cal.getTime(), 22f, 95f, 20, cat).save();
         }
-
     }
 
     @Override
