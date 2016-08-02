@@ -126,6 +126,9 @@ public class HomeActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent i = new Intent(this, SettingActivity.class);
             startActivity(i);
+        } else if (id == R.id.action_about) {
+            Intent i = new Intent(this, AboutActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
