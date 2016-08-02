@@ -15,17 +15,6 @@ public class Category extends SugarRecord {
     private String color;
     private int moneyLimit;
 
-    public static void createMockCategories() {
-        if (findAll().size() == 0) {
-            new Category("Food", "#00FF00", 5000).save();
-            new Category("Transportation", "#FF0000", 2000).save();
-            new Category("Fun", "#0000FF", 1000).save();
-            new Category("Clothes", "#FFFF00", 1000).save();
-            new Category("Culture", "#00FFFF", 500).save();
-            new Category("Household", "#FF00FF", 1500).save();
-        }
-    }
-
     public Category() {
     }
 
@@ -44,13 +33,8 @@ public class Category extends SugarRecord {
         }
     }
 
-    public static List<Category> findAll() {
-        List<Category> categories = new ArrayList<>();
-        Iterator<Category> categoryIterator = findAll(Category.class);
-        while (categoryIterator.hasNext()) {
-            categories.add(categoryIterator.next());
-        }
-        return categories;
+    public static List<Category> listAll() {
+        return listAll(Category.class);
     }
 
     public static List<String> getAllNames() {
@@ -64,6 +48,26 @@ public class Category extends SugarRecord {
 
     public List<Item> getItems() {
         return Item.find(Item.class, "category = ?", new String[]{Long.toString(getId())} );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        if (moneyLimit != category.moneyLimit) return false;
+        if (name != null ? !name.equals(category.name) : category.name != null) return false;
+        return color != null ? color.equals(category.color) : category.color == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (color != null ? color.hashCode() : 0);
+        result = 31 * result + moneyLimit;
+        return result;
     }
 
     @Override
@@ -90,6 +94,7 @@ public class Category extends SugarRecord {
     public void setColor(String color) {
         this.color = color;
     }
+
 
 
 }

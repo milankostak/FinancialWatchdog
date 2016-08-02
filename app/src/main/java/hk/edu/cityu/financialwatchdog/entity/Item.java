@@ -14,7 +14,7 @@ import java.util.List;
  * Entity and object for accessing items data
  */
 public class Item extends SugarRecord {
-    private String name;
+    private String subject;
     private Date time;
     private double latitude;
     private double longitude;
@@ -24,8 +24,8 @@ public class Item extends SugarRecord {
     public Item() {
     }
 
-    public Item(String name, Date time, double latitude, double longitude, double price, Category category) {
-        this.name = name;
+    public Item(String subject, Date time, double latitude, double longitude, double price, Category category) {
+        this.subject = subject;
         this.time = time;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -49,7 +49,7 @@ public class Item extends SugarRecord {
     @Override
     public String toString() {
         return "Item{" +
-                "name='" + name + '\'' +
+                "subject='" + subject + '\'' +
                 ", time=" + time +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
@@ -58,12 +58,12 @@ public class Item extends SugarRecord {
                 '}';
     }
 
-    public String getName() {
-        return name;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public Date getTime() {

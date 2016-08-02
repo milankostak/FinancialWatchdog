@@ -49,61 +49,62 @@ public class HomeActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(2);
     }
 
-    private void testSettings() {
-        Settings settings = new Settings(this);
-        System.out.println("Total Limit: " + settings.getTotalLimit());
-        settings.setTotalLimit(123456);
-    }
-
     public static void testDatabase() {
-        if (Category.findAll().size() == 0) {
-            Category.createMockCategories();
+        if (Category.listAll().size() == 0) {
+
+            new Category("Food", "#00FF00", 5000).save();
+            new Category("Transportation", "#FF0000", 2000).save();
+            new Category("Fun", "#0000FF", 1000).save();
+            new Category("Clothes", "#FFFF00", 1000).save();
+            new Category("Culture", "#00FFFF", 500).save();
+            new Category("Household", "#FF00FF", 1500).save();
+
             Category cat = Category.findByName("Food");
             Calendar cal = Calendar.getInstance();
 
-            cal.set(2016, 8, 2, 8, 23);
+            cal.set(2016, 7, 2, 8, 23);
             new Item("Breakfast", cal.getTime(), 22f, 95f, 20, cat).save();
-            cal.set(2016, 8, 2, 14, 23);
+            cal.set(2016, 7, 2, 14, 23);
             new Item("Lunch", cal.getTime(), 22f, 95f, 18, cat).save();
-            cal.set(2016, 8, 2, 19, 23);
+            cal.set(2016, 7, 2, 19, 23);
             new Item("Dinner", cal.getTime(), 22f, 95f, 27, cat).save();
-            cal.set(2016, 8, 1, 7, 23);
+            cal.set(2016, 7, 1, 7, 23);
             new Item("Breakfast", cal.getTime(), 22f, 95f, 10, cat).save();
-            cal.set(2016, 8, 1, 13, 23);
+            cal.set(2016, 7, 1, 13, 23);
             new Item("Lunch", cal.getTime(), 22f, 95f, 39, cat).save();
-            cal.set(2016, 8, 1, 16, 23);
+            cal.set(2016, 7, 1, 16, 23);
             new Item("Banana", cal.getTime(), 22f, 95f, 2.5, cat).save();
-            cal.set(2016, 8, 1, 18, 23);
+            cal.set(2016, 7, 1, 18, 23);
             new Item("Dinner", cal.getTime(), 22f, 95f, 26, cat).save();
-            cal.set(2016, 7, 31, 13, 23);
+            cal.set(2016, 6, 31, 13, 23);
             new Item("Lunch", cal.getTime(), 22f, 95f, 28, cat).save();
-            cal.set(2016, 7, 31, 18, 23);
+            cal.set(2016, 6, 31, 18, 23);
             new Item("Dinner", cal.getTime(), 22f, 95f, 32, cat).save();
 
             cat = Category.findByName("Transportation");
-            cal.set(2016, 8, 1, 18, 23);
+            cal.set(2016, 7, 1, 18, 23);
             new Item("MTR", cal.getTime(), 22f, 95f, 5.5, cat).save();
             new Item("MTR", cal.getTime(), 22f, 95f, 6, cat).save();
 
             cat = Category.findByName("Fun");
-            cal.set(2016, 8, 1, 18, 23);
+            cal.set(2016, 7, 1, 18, 23);
             new Item("Beer", cal.getTime(), 22f, 95f, 9, cat).save();
             new Item("Ice cream", cal.getTime(), 22f, 95f, 9, cat).save();
 
             cat = Category.findByName("Clothes");
-            cal.set(2016, 7, 31, 18, 23);
+            cal.set(2016, 6, 31, 18, 23);
             new Item("Flip flops", cal.getTime(), 22f, 95f, 50, cat).save();
 
             //cat = Category.findByName("Culture");
 
             cat = Category.findByName("Household");
-            cal.set(2016, 8, 2, 18, 23);
+            cal.set(2016, 7, 2, 18, 23);
             new Item("Laundry", cal.getTime(), 22f, 95f, 10, cat).save();
-            cal.set(2016, 7, 29, 18, 23);
+            cal.set(2016, 6, 29, 18, 23);
             new Item("Laundry", cal.getTime(), 22f, 95f, 10, cat).save();
-            cal.set(2016, 8, 1, 18, 23);
+            cal.set(2016, 7, 1, 18, 23);
             new Item("Air-con", cal.getTime(), 22f, 95f, 20, cat).save();
-            cal.set(2016, 7, 30, 18, 23);
+            cal.set(2016, 6, 30, 18, 23);
             new Item("Air-con", cal.getTime(), 22f, 95f, 20, cat).save();
         }
     }

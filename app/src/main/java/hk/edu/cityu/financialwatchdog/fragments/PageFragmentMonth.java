@@ -1,21 +1,22 @@
 package hk.edu.cityu.financialwatchdog.fragments;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
+import hk.edu.cityu.financialwatchdog.PieChartHelper;
 import hk.edu.cityu.financialwatchdog.R;
 
+/**
+ * Fragment displaying pie chart for last 30 days
+ */
 public class PageFragmentMonth extends Fragment {
 
     public PageFragmentMonth() {
@@ -30,31 +31,19 @@ public class PageFragmentMonth extends Fragment {
     }
 
     private void initPieChart(View rootView) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(new Date());
+        cal1.add(Calendar.DAY_OF_YEAR, -29);
+        cal1.set(Calendar.HOUR, 0);
+        cal1.set(Calendar.MINUTE, 0);
+        cal1.set(Calendar.SECOND, 0);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(new Date());
+        cal2.set(Calendar.HOUR_OF_DAY, 23);
+        cal2.set(Calendar.MINUTE, 59);
+        cal2.set(Calendar.SECOND, 59);
+
         PieChart pieChart = (PieChart) rootView.findViewById(R.id.pieChartMonth);
-
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(1f, 0));
-        entries.add(new Entry(2f, 1));
-        entries.add(new Entry(3f, 2));
-        entries.add(new Entry(4f, 3));
-        entries.add(new Entry(5f, 4));
-        entries.add(new Entry(90f, 5));
-
-        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
-
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-
-        PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        pieChart.setDescription("Description");
-        pieChart.setData(data);
-
-        pieChart.animateY(1000);
+        PieChartHelper.set(pieChart, getActivity(), cal1, cal2);
     }
 }

@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
+import hk.edu.cityu.financialwatchdog.PieChartHelper;
 import hk.edu.cityu.financialwatchdog.R;
 
+/**
+ * Fragment displaying pie chart for today
+ */
 public class PageFragmentDay extends Fragment {
 
     public PageFragmentDay() {
@@ -30,33 +31,19 @@ public class PageFragmentDay extends Fragment {
     }
 
     private void initPieChart(View rootView) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(new Date());
+        cal1.set(Calendar.HOUR, 0);
+        cal1.set(Calendar.MINUTE, 0);
+        cal1.set(Calendar.SECOND, 0);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(new Date());
+        cal2.set(Calendar.HOUR_OF_DAY, 23);
+        cal2.set(Calendar.MINUTE, 59);
+        cal2.set(Calendar.SECOND, 59);
+
         PieChart pieChart = (PieChart) rootView.findViewById(R.id.pieChartDay);
-
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(12f, 3));
-        entries.add(new Entry(18f, 4));
-        entries.add(new Entry(90f, 5));
-
-        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
-
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-
-        PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-        pieChart.setDescription("Description");
-        pieChart.setData(data);
-
-        pieChart.animateY(1000);
-
-        //pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
+        PieChartHelper.set(pieChart, getActivity(), cal1, cal2);
     }
+
 }

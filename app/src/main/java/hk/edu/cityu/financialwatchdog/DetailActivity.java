@@ -14,8 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,7 +40,7 @@ class DetailListAdapter extends ArrayAdapter<Item> {
         Item item = getItem(position);
 
         TextView whatView = (TextView) convertView.findViewById(R.id.tvWhat);
-        whatView.setText(item.getName());
+        whatView.setText(item.getSubject());
 
         TextView categoryView = (TextView) convertView.findViewById(R.id.tvCategory);
         categoryView.setText(item.getCategory().getName());

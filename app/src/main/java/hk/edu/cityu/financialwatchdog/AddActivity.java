@@ -90,7 +90,7 @@ public class AddActivity extends AppCompatActivity {
         //categorySpinner.set
 
         EditText nameText = (EditText) findViewById(R.id.etName);
-        nameText.setText(item.getName());
+        nameText.setText(item.getSubject());
 
         EditText priceText = (EditText) findViewById(R.id.etPrice);
         priceText.setText(Double.toString(item.getPrice()));
@@ -219,8 +219,8 @@ public class AddActivity extends AppCompatActivity {
         boolean problem = false;
         // name
         EditText nameText = (EditText) findViewById(R.id.etName);
-        String name = nameText.getText().toString();
-        if (name.equals("")) {
+        String subject = nameText.getText().toString();
+        if (subject.equals("")) {
             problem = true;
             makeToast(getResources().getString(R.string.toast_insert_name));
         }
@@ -252,12 +252,12 @@ public class AddActivity extends AppCompatActivity {
             Date dateTime = getDateTime();
             // create item
             if (isEditing) {
-                item.setName(name);
+                item.setSubject(subject);
                 item.setTime(dateTime);
                 item.setPrice(price);
                 item.setCategory(category);
             } else {
-                item = new Item(name, dateTime, location, price, category);
+                item = new Item(subject, dateTime, location, price, category);
             }
 
             // if not showing dialog with asking for permission
