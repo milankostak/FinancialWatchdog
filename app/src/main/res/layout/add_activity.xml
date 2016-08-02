@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddActivity">
+    tools:context=".AddActivity"
+    android:background="#FFFFFF">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,136 +17,151 @@
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
             android:background="#FFFFFF"
+            android:baselineAligned="false"
             android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/categorySpinner"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="10dp">
 
-            <Spinner
-                android:id="@+id/currencySpinner"
+                <Spinner
+                    android:id="@+id/categorySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp" />
+
+                <Spinner
+                    android:id="@+id/currencySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp" />
+                android:layout_height="match_parent">
 
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
-
-                <TableRow
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="10"
-                        android:background="#FFFFFF"
-                        android:fontFamily="sans-serif-thin"
-                        android:gravity="left|fill_vertical"
-                        android:paddingLeft="15dp"
-                        android:text="Name"
-                        android:textColor="#6A6A61"
-                        android:textSize="20sp" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="10"
+                            android:background="#FFFFFF"
+                            android:fontFamily="sans-serif-thin"
+                            android:gravity="left|fill_vertical"
+                            android:paddingLeft="15dp"
+                            android:text="Name"
+                            android:textColor="#6A6A61"
+                            android:textSize="20sp" />
 
 
-                    <EditText
-                        android:id="@+id/etName"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="24"
-                        android:gravity="center"
-                        android:textColor="#BFBFBF"
-                        android:textSize="25sp" />
-                </TableRow>
+                        <EditText
+                            android:id="@+id/etName"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="24"
+                            android:gravity="center"
+                            android:textColor="#BFBFBF"
+                            android:textSize="25sp" />
+                    </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="10"
-                        android:background="#FFFFFF"
-                        android:fontFamily="sans-serif-thin"
-                        android:gravity="left|fill_vertical"
-                        android:paddingLeft="15dp"
-                        android:text="Price"
-                        android:textColor="#6A6A61"
-                        android:textSize="20sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="10"
+                            android:background="#FFFFFF"
+                            android:fontFamily="sans-serif-thin"
+                            android:gravity="left|fill_vertical"
+                            android:paddingLeft="15dp"
+                            android:text="Price"
+                            android:textColor="#6A6A61"
+                            android:textSize="20sp" />
 
-                    <EditText
-                        android:id="@+id/etPrice"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="24"
-                        android:gravity="center"
-                        android:inputType="numberDecimal"
-                        android:textColor="#BFBFBF"
-                        android:textSize="25sp" />
-                </TableRow>
+                        <EditText
+                            android:id="@+id/etPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="24"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:textColor="#BFBFBF"
+                            android:textSize="25sp" />
+                    </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="10"
-                        android:background="#FFFFFF"
-                        android:fontFamily="sans-serif-thin"
-                        android:gravity="left|fill_vertical"
-                        android:paddingLeft="15dp"
-                        android:text="Time"
-                        android:textColor="#6A6A61"
-                        android:textSize="20sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="10"
+                            android:background="#FFFFFF"
+                            android:fontFamily="sans-serif-thin"
+                            android:gravity="left|fill_vertical"
+                            android:paddingLeft="15dp"
+                            android:text="Time"
+                            android:textColor="#6A6A61"
+                            android:textSize="20sp" />
 
-                    <EditText
-                        android:id="@+id/etDate"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="12"
-                        android:clickable="true"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:gravity="center"
-                        android:textColor="#BFBFBF"
-                        android:textSize="18sp" />
+                        <EditText
+                            android:id="@+id/etDate"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="12"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:gravity="center"
+                            android:textColor="#BFBFBF"
+                            android:textSize="18sp" />
 
-                    <EditText
-                        android:id="@+id/etTime"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="12"
-                        android:clickable="true"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:gravity="center"
-                        android:textColor="#BFBFBF"
-                        android:textSize="18sp" />
-                </TableRow>
+                        <EditText
+                            android:id="@+id/etTime"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="12"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:gravity="center"
+                            android:textColor="#BFBFBF"
+                            android:textSize="18sp" />
+                    </TableRow>
 
-            </TableLayout>
+                </TableLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
