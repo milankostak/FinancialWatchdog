@@ -14,7 +14,7 @@ import hk.edu.cityu.financialwatchdog.fragments.PageFragmentWeek;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-    private List<Fragment> fragments;
+    protected List<Fragment> fragments;
     private final String[] title = new String[3];
 
     public TabsPagerAdapter(FragmentManager fm, Resources resources) {

@@ -15,9 +15,12 @@ import java.util.Calendar;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
-import hk.edu.cityu.financialwatchdog.entity.Settings;
+import hk.edu.cityu.financialwatchdog.fragments.*;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private static final int UPDATE_PARAMETER = 32;
+    private TabsPagerAdapter tabsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +29,17 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initTabs();
-        testDatabase();
+        createMockDatabaseData();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == UPDATE_PARAMETER) {
+            ((PageFragmentDay) tabsAdapter.fragments.get(0)).update();
+            ((PageFragmentWeek) tabsAdapter.fragments.get(1)).update();
+            ((PageFragmentMonth) tabsAdapter.fragments.get(2)).update();
+        }
     }
 
     /**
@@ -40,16 +48,16 @@ public class HomeActivity extends AppCompatActivity {
     private void initTabs() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager(), getResources());
+        tabsAdapter = new TabsPagerAdapter(getSupportFragmentManager(), getResources());
 
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(tabsAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
         // remembers 2 pages that are not visible
         viewPager.setOffscreenPageLimit(2);
     }
 
-    public static void testDatabase() {
+    public static void createMockDatabaseData() {
         if (Category.listAll().size() == 0) {
 
             new Category("Food", "#00FF00", 5000).save();
@@ -139,13 +147,13 @@ public class HomeActivity extends AppCompatActivity {
         Log.i("clicks", "You add a record.");
         Intent i = new Intent(this, AddActivity.class);
         i.putExtra(AddActivity.EDIT_PARAMETER, false);
-        startActivity(i);
+        startActivityForResult(i, UPDATE_PARAMETER);
     }
 
     public void detail(View v){
         Log.i("clicks", "see detail");
         Intent i = new Intent(this, DetailActivity.class);
-        startActivity(i);
+        startActivityForResult(i, UPDATE_PARAMETER);
     }
 
 

@@ -19,6 +19,8 @@ import hk.edu.cityu.financialwatchdog.R;
  */
 public class PageFragmentWeek extends Fragment {
 
+    private PieChart pieChart;
+
     public PageFragmentWeek() {
     }
 
@@ -26,11 +28,16 @@ public class PageFragmentWeek extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.page_fragment_week, container, false);
-        initPieChart(rootView);
+        pieChart = (PieChart) rootView.findViewById(R.id.pieChartWeek);
+        initPieChart();
         return rootView;
     }
 
-    private void initPieChart(View rootView) {
+    public void update() {
+        initPieChart();
+    }
+
+    private void initPieChart() {
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(new Date());
         cal1.add(Calendar.DAY_OF_YEAR, -6);
@@ -43,7 +50,6 @@ public class PageFragmentWeek extends Fragment {
         cal2.set(Calendar.MINUTE, 59);
         cal2.set(Calendar.SECOND, 59);
 
-        PieChart pieChart = (PieChart) rootView.findViewById(R.id.pieChartWeek);
         PieChartHelper.set(pieChart, getActivity(), cal1, cal2);
     }
 }
