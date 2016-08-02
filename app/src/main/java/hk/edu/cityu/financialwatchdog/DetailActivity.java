@@ -26,6 +26,7 @@ import hk.edu.cityu.financialwatchdog.entity.Item;
  * show detail about each spend record
  */
 class DetailListAdapter extends ArrayAdapter<Item> {
+
     public DetailListAdapter(Context context, List<Item> items) {
         super(context, R.layout.detail_row, items);
     }
@@ -61,6 +62,7 @@ class DetailListAdapter extends ArrayAdapter<Item> {
 }
 
 public class DetailActivity extends AppCompatActivity {
+
     private List<Item> items;
     private ListView listView;
     private DetailListAdapter adapter;
@@ -71,8 +73,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_PARAMETER) {
-            HomeActivity.testDatabase();
-            adapter.notifyDataSetChanged();
+            update();
         }
     }
 
@@ -82,9 +83,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.detail_activity);
         listView = (ListView) findViewById(R.id.listView);
 
-        items = new ArrayList<>();
-        adapter = new DetailListAdapter(this, items);
-        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -96,15 +94,13 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        retrieveData();
+        update();
     }
 
-    public void retrieveData() {
-        Iterator<Item> itemsLocal = Item.findAll(Item.class);
-        while (itemsLocal.hasNext()) {
-            items.add(itemsLocal.next());
-        }
-
+    private void update() {
+        items = Item.findAll();
+        adapter = new DetailListAdapter(this, items);
+        listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 

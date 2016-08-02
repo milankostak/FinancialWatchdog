@@ -4,7 +4,10 @@ import android.location.Location;
 
 import com.orm.SugarRecord;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Milan on 28.7.2016.
@@ -32,6 +35,15 @@ public class Item extends SugarRecord {
 
     public Item(String name, Date time, Location location, double price, Category category) {
         this(name, time, location == null ? 0 : location.getLatitude(), location == null ? 0 : location.getLongitude(), price, category);
+    }
+
+    public static List<Item> findAll() {
+        List<Item> items = new ArrayList<>();
+        Iterator<Item> itemIterator = findAll(Item.class);
+        while (itemIterator.hasNext()) {
+            items.add(itemIterator.next());
+        }
+        return items;
     }
 
     @Override
