@@ -11,7 +11,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import java.util.Calendar;
 import java.util.Date;
 
-import hk.edu.cityu.financialwatchdog.PieChartHelper;
+import hk.edu.cityu.financialwatchdog.helpers.PieChartHelper;
 import hk.edu.cityu.financialwatchdog.R;
 
 /**

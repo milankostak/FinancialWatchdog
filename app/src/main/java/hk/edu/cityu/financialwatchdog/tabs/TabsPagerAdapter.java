@@ -1,4 +1,4 @@
-package hk.edu.cityu.financialwatchdog;
+package hk.edu.cityu.financialwatchdog.tabs;
 
 import android.content.res.Resources;
 import android.support.v4.app.Fragment;
@@ -8,12 +8,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import hk.edu.cityu.financialwatchdog.R;
 import hk.edu.cityu.financialwatchdog.fragments.*;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     private static final int NUMBER_OF_TABS = 4;
-    protected final List<Fragment> fragments = new ArrayList<>(NUMBER_OF_TABS);
+    private final List<Fragment> fragments = new ArrayList<>(NUMBER_OF_TABS);
     private final String[] title = new String[NUMBER_OF_TABS];
 
     public TabsPagerAdapter(FragmentManager fm, Resources resources) {
@@ -46,5 +47,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return title[position];
+    }
+
+    public List<Fragment> getFragments() {
+        return fragments;
     }
 }

@@ -1,4 +1,4 @@
-package hk.edu.cityu.financialwatchdog;
+package hk.edu.cityu.financialwatchdog.helpers;
 
 import android.app.Activity;
 import android.graphics.Color;

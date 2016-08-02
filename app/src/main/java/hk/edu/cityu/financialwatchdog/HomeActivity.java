@@ -15,7 +15,11 @@ import java.util.Calendar;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
-import hk.edu.cityu.financialwatchdog.fragments.*;
+import hk.edu.cityu.financialwatchdog.fragments.PageFragmentMonth;
+import hk.edu.cityu.financialwatchdog.fragments.PageFragmentToday;
+import hk.edu.cityu.financialwatchdog.fragments.PageFragmentWeek;
+import hk.edu.cityu.financialwatchdog.fragments.PageFragmentYesterday;
+import hk.edu.cityu.financialwatchdog.tabs.TabsPagerAdapter;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -36,10 +40,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == UPDATE_PARAMETER) {
-            ((PageFragmentToday) tabsAdapter.fragments.get(0)).update();
-            ((PageFragmentYesterday) tabsAdapter.fragments.get(1)).update();
-            ((PageFragmentWeek) tabsAdapter.fragments.get(2)).update();
-            ((PageFragmentMonth) tabsAdapter.fragments.get(3)).update();
+            ((PageFragmentToday) tabsAdapter.getFragments().get(0)).update();
+            ((PageFragmentYesterday) tabsAdapter.getFragments().get(1)).update();
+            ((PageFragmentWeek) tabsAdapter.getFragments().get(2)).update();
+            ((PageFragmentMonth) tabsAdapter.getFragments().get(3)).update();
         }
     }
 
@@ -49,13 +53,14 @@ public class HomeActivity extends AppCompatActivity {
     private void initTabs() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+
         tabsAdapter = new TabsPagerAdapter(getSupportFragmentManager(), getResources());
 
         viewPager.setAdapter(tabsAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
         // remembers 3 pages that are not visible
-        viewPager.setOffscreenPageLimit(tabsAdapter.fragments.size() - 1);
+        viewPager.setOffscreenPageLimit(tabsAdapter.getFragments().size() - 1);
     }
 
     public static void createMockDatabaseData() {
