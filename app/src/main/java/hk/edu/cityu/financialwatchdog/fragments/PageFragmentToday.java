@@ -40,7 +40,7 @@ public class PageFragmentToday extends Fragment {
     private void initPieChart() {
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(new Date());
-        cal1.set(Calendar.HOUR, 0);
+        cal1.set(Calendar.HOUR_OF_DAY, 0);
         cal1.set(Calendar.MINUTE, 0);
         cal1.set(Calendar.SECOND, 0);
         Calendar cal2 = Calendar.getInstance();

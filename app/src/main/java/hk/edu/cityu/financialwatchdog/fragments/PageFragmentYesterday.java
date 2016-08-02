@@ -41,6 +41,7 @@ public class PageFragmentYesterday extends Fragment {
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(new Date());
         cal1.add(Calendar.DAY_OF_YEAR, -1);
+        cal1.set(Calendar.HOUR_OF_DAY, 0);
         cal1.set(Calendar.MINUTE, 0);
         cal1.set(Calendar.SECOND, 0);
         Calendar cal2 = Calendar.getInstance();
