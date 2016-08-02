@@ -95,6 +95,11 @@ public class Category extends SugarRecord {
         this.color = color;
     }
 
+    public int getMoneyLimit() {
+        return moneyLimit;
+    }
 
-
+    public void setMoneyLimit(int moneyLimit) {
+        this.moneyLimit = moneyLimit;
+    }
 }

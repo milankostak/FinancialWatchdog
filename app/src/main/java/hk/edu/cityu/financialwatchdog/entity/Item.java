@@ -37,13 +37,8 @@ public class Item extends SugarRecord {
         this(name, time, location == null ? 0 : location.getLatitude(), location == null ? 0 : location.getLongitude(), price, category);
     }
 
-    public static List<Item> findAll() {
-        List<Item> items = new ArrayList<>();
-        Iterator<Item> itemIterator = findAll(Item.class);
-        while (itemIterator.hasNext()) {
-            items.add(itemIterator.next());
-        }
-        return items;
+    public static List<Item> listAll() {
+        return listAll(Item.class);
     }
 
     @Override
