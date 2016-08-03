@@ -142,10 +142,10 @@ public class HomeActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_category) {
             Intent i = new Intent(this, CategoryListActivity.class);
-            startActivity(i);
+            startActivityForResult(i, BACK_TO_HOME_PARAM);
         } else if (id == R.id.action_settings) {
             Intent i = new Intent(this, SettingActivity.class);
-            startActivity(i);
+            startActivityForResult(i, BACK_TO_HOME_PARAM);
         } else if (id == R.id.action_about) {
             Intent i = new Intent(this, AboutActivity.class);
             startActivity(i);

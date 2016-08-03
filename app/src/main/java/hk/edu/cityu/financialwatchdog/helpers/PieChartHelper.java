@@ -96,10 +96,12 @@ public class PieChartHelper {
         }
 
         // set remaining money
-        Settings settings = new Settings(activity);
-        //settings.setTotalLimit(500);
-        long remainingMoney = settings.getTotalLimit() - sumMoney;
-        entries.add(new Entry(remainingMoney, i++));
+        long remainingMoney = new Settings(activity).getTotalLimit() - sumMoney;
+        if (remainingMoney < 0) {
+            entries.add(new Entry(0, i++));
+        } else {
+            entries.add(new Entry(remainingMoney, i++));
+        }
         labels.add("Remaining money");
         colors.add(Color.rgb(100, 100, 100));
     }
