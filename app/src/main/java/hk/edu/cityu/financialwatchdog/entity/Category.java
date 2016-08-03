@@ -12,13 +12,13 @@ import java.util.List;
  */
 public class Category extends SugarRecord {
     private String name;
-    private String color;
-    private int moneyLimit;
+    private int color;
+    private long moneyLimit;
 
     public Category() {
     }
 
-    public Category(String name, String color, int moneyLimit) {
+    public Category(String name, int color, long moneyLimit) {
         this.name = name;
         this.color = color;
         this.moneyLimit = moneyLimit;
@@ -57,16 +57,17 @@ public class Category extends SugarRecord {
 
         Category category = (Category) o;
 
+        if (color != category.color) return false;
         if (moneyLimit != category.moneyLimit) return false;
-        if (name != null ? !name.equals(category.name) : category.name != null) return false;
-        return color != null ? color.equals(category.color) : category.color == null;
+        return name != null ? name.equals(category.name) : category.name == null;
+
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (color != null ? color.hashCode() : 0);
-        result = 31 * result + moneyLimit;
+        result = 31 * result + color;
+        result = 31 * result + (int) (moneyLimit ^ (moneyLimit >>> 32));
         return result;
     }
 
@@ -87,19 +88,19 @@ public class Category extends SugarRecord {
         this.name = name;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
-    public int getMoneyLimit() {
+    public long getMoneyLimit() {
         return moneyLimit;
     }
 
-    public void setMoneyLimit(int moneyLimit) {
+    public void setMoneyLimit(long moneyLimit) {
         this.moneyLimit = moneyLimit;
     }
 }

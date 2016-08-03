@@ -21,6 +21,9 @@ android {
 repositories {
     maven { url 'https://jitpack.io' }
 }
+repositories {
+    jcenter()
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -29,4 +32,5 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.github.satyan:sugar:1.4'
+    compile 'com.pes.materialcolorpicker:library:1.0.2'
 }

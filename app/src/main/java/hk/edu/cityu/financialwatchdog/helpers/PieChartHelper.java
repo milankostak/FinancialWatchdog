@@ -92,7 +92,7 @@ public class PieChartHelper {
 
             entries.add(new Entry(expenses, i++));
             labels.add(mapEntry.getKey().getName());
-            colors.add(Color.parseColor(mapEntry.getKey().getColor()));
+            colors.add(mapEntry.getKey().getColor());
         }
 
         // set remaining money

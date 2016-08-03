@@ -1,6 +1,7 @@
 package hk.edu.cityu.financialwatchdog;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -67,12 +68,12 @@ public class HomeActivity extends AppCompatActivity {
     public static void createMockDatabaseData() {
         if (Category.listAll().size() == 0) {
 
-            new Category("Food", "#00FF00", 5000).save();
-            new Category("Transportation", "#FF0000", 2000).save();
-            new Category("Fun", "#0000FF", 1000).save();
-            new Category("Clothes", "#FFFF00", 1000).save();
-            new Category("Culture", "#00FFFF", 500).save();
-            new Category("Household", "#FF00FF", 1500).save();
+            new Category("Food", Color.parseColor("#00FF00"), 5000).save();
+            new Category("Transportation", Color.parseColor("#FF0000"), 2000).save();
+            new Category("Fun", Color.parseColor("#0000FF"), 1000).save();
+            new Category("Clothes", Color.parseColor("#FFFF00"), 1000).save();
+            new Category("Culture", Color.parseColor("#00FFFF"), 500).save();
+            new Category("Household", Color.parseColor("#FF00FF"), 1500).save();
 
             Category cat = Category.findByName("Food");
             Calendar cal = Calendar.getInstance();

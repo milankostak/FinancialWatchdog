@@ -35,8 +35,8 @@ import hk.edu.cityu.financialwatchdog.entity.Settings;
  */
 public class AddActivity extends AppCompatActivity {
 
-    public static final String EDIT_PARAMETER = "editParameter";
-    public static final String ID_PARAMETER = "idParameter";
+    protected static final String EDIT_PARAMETER = "editParameter";
+    protected static final String ID_PARAMETER = "idParameter";
     private boolean isEditing;
 
     //work with permissions

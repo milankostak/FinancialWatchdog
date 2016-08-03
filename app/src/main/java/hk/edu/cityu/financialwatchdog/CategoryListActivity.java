@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,7 +17,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
-import static hk.edu.cityu.financialwatchdog.ResultConstants.*;
+
+import static hk.edu.cityu.financialwatchdog.ResultConstants.BACK_CATEGORY_DETAIL_PARAM;
 
 class CategoryListAdapter extends ArrayAdapter<Category> {
 
@@ -36,11 +39,11 @@ class CategoryListAdapter extends ArrayAdapter<Category> {
         TextView tvCategoryName = (TextView) convertView.findViewById(R.id.tvCategoryName);
         tvCategoryName.setText(category.getName());
 
-        TextView tvCategoryColor = (TextView) convertView.findViewById(R.id.tvCategoryColor);
-        tvCategoryColor.setText(category.getColor());
+        View categoryColor = convertView.findViewById(R.id.vCategoryColorList);
+        categoryColor.setBackgroundColor(category.getColor());
 
         TextView tvCategoryLimit = (TextView) convertView.findViewById(R.id.tvCategoryLimit);
-        tvCategoryLimit.setText(Integer.toString(category.getMoneyLimit()));
+        tvCategoryLimit.setText(Long.toString(category.getMoneyLimit()));
 
         return convertView;
     }
@@ -70,11 +73,11 @@ public class CategoryListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Item item = adapter.getItem(position);
-                Intent i = new Intent(CategoryListActivity.this, AddActivity.class);
-                i.putExtra(AddActivity.EDIT_PARAMETER, true);
-                i.putExtra(AddActivity.ID_PARAMETER, item.getId());
-                startActivityForResult(i, BACK_CATEGORY_DETAIL_PARAM);*/
+                Category category = adapter.getItem(position);
+                Intent i = new Intent(CategoryListActivity.this, CategoryDetailActivity.class);
+                i.putExtra(CategoryDetailActivity.EDIT_PARAMETER, true);
+                i.putExtra(CategoryDetailActivity.ID_PARAMETER, category.getId());
+                startActivityForResult(i, BACK_CATEGORY_DETAIL_PARAM);
             }
         });
 
@@ -86,6 +89,31 @@ public class CategoryListActivity extends AppCompatActivity {
         adapter = new CategoryListAdapter(this, categories);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_category, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_add_category) {
+            Intent i = new Intent(this, CategoryDetailActivity.class);
+            i.putExtra(CategoryDetailActivity.EDIT_PARAMETER, false);
+            startActivityForResult(i, BACK_CATEGORY_DETAIL_PARAM);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

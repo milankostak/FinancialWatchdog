@@ -1,8 +1,5 @@
 package hk.edu.cityu.financialwatchdog;
 
-/**
- * Created by Milan on 3.8.2016.
- */
 public class ResultConstants {
     // non-instantiable class
     private ResultConstants() {}
