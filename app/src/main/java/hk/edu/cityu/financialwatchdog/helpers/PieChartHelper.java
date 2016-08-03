@@ -30,18 +30,22 @@ public class PieChartHelper {
      * @param activity activity for purpose of accessing data in settings
      * @param cal1 calendar from
      * @param cal2 calendar to
+     * @param numberOfDays number of days that the chart is displaying, 0 means total
+     * @return boolean value if the limit was exceeded for given time period
      */
-    public static void set(PieChart pieChart, Activity activity, Calendar cal1, Calendar cal2) {
+    public static boolean set(PieChart pieChart, Activity activity, Calendar cal1, Calendar cal2, int numberOfDays) {
         Map<Category, Long> categoriesMap = getChartDataByDate(cal1, cal2);
 
         List<Entry> entries = new ArrayList<>();
         List<String> labels = new ArrayList<>();
         List<Integer> colors = new ArrayList<>();
 
-        setDataToChart(categoriesMap, entries, labels, colors, activity);
+        boolean isOverLimit = setDataToChart(categoriesMap, entries, labels, colors, activity, numberOfDays);
 
         // set charts objects
         setupPieChart(pieChart, entries, labels, colors);
+
+        return isOverLimit;
     }
 
     /**
@@ -82,8 +86,11 @@ public class PieChartHelper {
      * @param labels labels
      * @param colors colors
      * @param activity activity for settings
+     * @param numberOfDays number of days that the chart is displaying, 0 means total
      */
-    private static void setDataToChart(Map<Category, Long> categoriesMap, List<Entry> entries, List<String> labels, List<Integer> colors, Activity activity) {
+    private static boolean setDataToChart(Map<Category, Long> categoriesMap,
+                                       List<Entry> entries, List<String> labels, List<Integer> colors,
+                                       Activity activity, int numberOfDays) {
         int i = 0;
         int sumMoney = 0;
         for (Map.Entry<Category, Long> mapEntry : categoriesMap.entrySet()) {
@@ -96,14 +103,28 @@ public class PieChartHelper {
         }
 
         // set remaining money
-        long remainingMoney = new Settings(activity).getTotalLimit() - sumMoney;
+        long totalLimit = new Settings(activity).getTotalLimit();
+        long currentLimit;
+        if (numberOfDays == 0) {
+            currentLimit = totalLimit;
+        } else {
+            int totalDays = new Settings(activity).getTotalDays();
+            currentLimit = (totalLimit / totalDays) * numberOfDays;
+        }
+
+        boolean isOverLimit;
+        long remainingMoney = currentLimit - sumMoney;
         if (remainingMoney < 0) {
+            isOverLimit = true;
             entries.add(new Entry(0, i++));
         } else {
+            isOverLimit = false;
             entries.add(new Entry(remainingMoney, i++));
         }
         labels.add("Remaining money");
         colors.add(Color.rgb(100, 100, 100));
+
+        return isOverLimit;
     }
 
     /**

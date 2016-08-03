@@ -26,6 +26,9 @@ public class Settings {
     private static final String TIME_TO_NAME = "TimeTo";
     private long timeTo;
 
+    private static final String TOTAL_DAYS_NAME = "TotalDays";
+    private int totalDays;
+
     private static final String LOCATION_PERMISSION_NAME = "LocationPermission";
     private boolean locationPermissionDenied;
 
@@ -49,6 +52,7 @@ public class Settings {
         totalLimit = settings.getLong(TOTAL_LIMIT_NAME, 0);
         timeFrom = settings.getLong(TIME_FROM_NAME, 0);
         timeTo = settings.getLong(TIME_TO_NAME, 0);
+        totalDays = settings.getInt(TOTAL_DAYS_NAME, 1);
         locationPermissionDenied = settings.getBoolean(LOCATION_PERMISSION_NAME, false);
     }
 
@@ -79,6 +83,16 @@ public class Settings {
     public void setTimeTo(long timeTo) {
         this.timeTo = timeTo;
         editor.putLong(TIME_TO_NAME, timeTo);
+        editor.apply();
+    }
+
+    public int getTotalDays() {
+        return totalDays;
+    }
+
+    public void setTotalDays(int totalDays) {
+        this.totalDays = totalDays;
+        editor.putInt(TOTAL_DAYS_NAME, totalDays);
         editor.apply();
     }
 

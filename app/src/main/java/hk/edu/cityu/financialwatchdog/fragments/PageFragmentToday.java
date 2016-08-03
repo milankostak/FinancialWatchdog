@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 
@@ -20,6 +21,7 @@ import hk.edu.cityu.financialwatchdog.R;
 public class PageFragmentToday extends Fragment {
 
     private PieChart pieChart;
+    private TextView overLimitText;
 
     public PageFragmentToday() {
     }
@@ -29,6 +31,7 @@ public class PageFragmentToday extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.page_fragment_today, container, false);
         pieChart = (PieChart) rootView.findViewById(R.id.pieChartToday);
+        overLimitText = (TextView) rootView.findViewById(R.id.overLimitToday);
         initPieChart();
         return rootView;
     }
@@ -49,7 +52,13 @@ public class PageFragmentToday extends Fragment {
         cal2.set(Calendar.MINUTE, 59);
         cal2.set(Calendar.SECOND, 59);
 
-        PieChartHelper.set(pieChart, getActivity(), cal1, cal2);
+        boolean isOverLimit = PieChartHelper.set(pieChart, getActivity(), cal1, cal2, 1);
+
+        if (isOverLimit) {
+            overLimitText.setVisibility(View.VISIBLE);
+        } else {
+            overLimitText.setVisibility(View.GONE);
+        }
     }
 
 }

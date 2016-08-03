@@ -115,16 +115,30 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void saveSettings(View v) {
+        boolean problem = false;
         String totalLimitString = etTotalBudget.getText().toString();
         if (totalLimitString.equals("")) {
+            problem = true;
             makeToast("Insert limit.");
         } else {
             long totalLimit = Long.parseLong(totalLimitString);
             settings.setTotalLimit(totalLimit);
         }
-        settings.setTimeFrom(dateFromCalendar.getTimeInMillis());
-        settings.setTimeTo(dateToCalendar.getTimeInMillis());
-        finish();
+        long timeFrom = dateFromCalendar.getTimeInMillis();
+        long timeTo = dateToCalendar.getTimeInMillis();
+        if (timeFrom > timeTo) {
+            problem = true;
+            makeToast("\"Date from\" is later than \"date to\".");
+        } else {
+            settings.setTimeFrom(dateFromCalendar.getTimeInMillis());
+            settings.setTimeTo(dateToCalendar.getTimeInMillis());
+            long time = timeTo - timeFrom;
+            int totalDays = (int) (time/(1000*3600*24));//to milis, hours, days
+            settings.setTotalDays(totalDays);
+        }
+        if (!problem) {
+            finish();
+        }
     }
 
     /**
