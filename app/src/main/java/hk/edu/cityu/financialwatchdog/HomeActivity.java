@@ -163,8 +163,9 @@ public class HomeActivity extends AppCompatActivity {
 
     public void showDetailForPeriod(View v){
         //PieChartFragment
-        //tabLayout.
+        int param = ((PieChartFragment) tabsAdapter.getItem(tabLayout.getSelectedTabPosition())).getMyFragmentId();
         Intent i = new Intent(HomeActivity.this, ItemListActivity.class);
+        i.putExtra(ItemListActivity.ID_PARAMETER, param);
         startActivityForResult(i, BACK_TO_HOME_PARAM);
     }
 

@@ -14,10 +14,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
 import hk.edu.cityu.financialwatchdog.entity.Item;
+import hk.edu.cityu.financialwatchdog.helpers.CalendarHelper;
+
+import static hk.edu.cityu.financialwatchdog.fragments.PieChartFragment.*;
 import static hk.edu.cityu.financialwatchdog.ResultConstants.*;
 
 /**
@@ -61,10 +66,12 @@ class ItemListAdapter extends ArrayAdapter<Item> {
 
 public class ItemListActivity extends AppCompatActivity {
 
+    public static final String ID_PARAMETER = "idParameter";
     private List<Item> items;
     private ListView listView;
     private ItemListAdapter adapter;
 
+    private int idOfDetail;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -91,11 +98,43 @@ public class ItemListActivity extends AppCompatActivity {
             }
         });
 
+        idOfDetail = getIntent().getExtras().getInt(ID_PARAMETER);
+
         update();
     }
 
     private void update() {
-        items = Item.listAll();
+        final Iterator<Item> itemsIterator;
+        final String sqlWhere = "time > ? and time < ? ";
+        switch (idOfDetail) {
+            case SHOW_TODAY_PARAM:
+                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
+                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForToday())
+                );
+                break;
+            case SHOW_YESTERDAY_PARAM:
+                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
+                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForYesterday())
+                );
+                break;
+            case SHOW_WEEK_PARAM:
+                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
+                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForWeek())
+                );
+                break;
+            case SHOW_MONTH_PARAM:
+                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
+                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForMonth())
+                );
+                break;
+            default: itemsIterator = Item.findAll(Item.class);
+                break;
+        }
+        items = new ArrayList<>();
+        while (itemsIterator.hasNext()) {
+            items.add(itemsIterator.next());
+        }
+
         adapter = new ItemListAdapter(this, items);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

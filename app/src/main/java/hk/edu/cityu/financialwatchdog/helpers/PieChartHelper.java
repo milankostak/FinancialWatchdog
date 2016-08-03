@@ -28,13 +28,12 @@ public class PieChartHelper {
      * Only public method calling other methods
      * @param pieChart pie chart component
      * @param activity activity for purpose of accessing data in settings
-     * @param cal1 calendar from
-     * @param cal2 calendar to
+     * @param calendars list of two calendars - from and to
      * @param numberOfDays number of days that the chart is displaying, 0 means total
      * @return boolean value if the limit was exceeded for given time period
      */
-    public static boolean set(PieChart pieChart, Activity activity, Calendar cal1, Calendar cal2, int numberOfDays) {
-        Map<Category, Long> categoriesMap = getChartDataByDate(cal1, cal2);
+    public static boolean set(PieChart pieChart, Activity activity, List<Calendar> calendars, int numberOfDays) {
+        Map<Category, Long> categoriesMap = getChartDataByDate(calendars);
 
         List<Entry> entries = new ArrayList<>();
         List<String> labels = new ArrayList<>();
@@ -50,18 +49,17 @@ public class PieChartHelper {
 
     /**
      * Loads data from database a transforms it to map where each category has its spend money
-     * @param cal1 calendar from
-     * @param cal2 calendar to
+     * @param calendars calendar from and to
      * @return map of categories and spend money
      */
-    private static Map<Category, Long> getChartDataByDate(Calendar cal1, Calendar cal2) {
+    private static Map<Category, Long> getChartDataByDate(List<Calendar> calendars) {
         // get data
         List<Item> items = Item.findWithQuery(Item.class,
                 "select *" +
                         "from category c join item i on category = i.category " +
                         "where time > ? and time < ? " +
                         "group by i.id",
-                new String[]{Long.toString(cal1.getTime().getTime()), Long.toString(cal2.getTime().getTime())});
+                new String[]{Long.toString(calendars.get(0).getTime().getTime()), Long.toString(calendars.get(1).getTime().getTime())});
         List<Category> cats = Category.listAll();
 
         // init
