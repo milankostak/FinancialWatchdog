@@ -3,6 +3,8 @@ package hk.edu.cityu.financialwatchdog.entity;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import java.util.Date;
+
 /**
  * Created by Milan on 28.7.2016.
  * Object for managing settings data
@@ -54,6 +56,13 @@ public class Settings {
         timeTo = settings.getLong(TIME_TO_NAME, 0);
         totalDays = settings.getInt(TOTAL_DAYS_NAME, 1);
         locationPermissionDenied = settings.getBoolean(LOCATION_PERMISSION_NAME, false);
+    }
+
+    public void reset() {
+        setTotalLimit(0);
+        setTimeFrom(new Date().getTime());
+        setTimeTo(new Date().getTime());
+        setTotalDays(1);
     }
 
     public long getTotalLimit() {

@@ -1,5 +1,6 @@
 package hk.edu.cityu.financialwatchdog;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
+import hk.edu.cityu.financialwatchdog.entity.Category;
+import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
 
 public class SettingActivity extends AppCompatActivity {
@@ -43,7 +46,7 @@ public class SettingActivity extends AppCompatActivity {
         long timeFrom = settings.getTimeFrom();
         dateFromCalendar = Calendar.getInstance();
         if (timeFrom == 0) {
-            dateFromCalendar.setTime(new Date());
+            setCalendarToToday(dateFromCalendar);
         } else {
             dateFromCalendar.setTimeInMillis(timeFrom);
         }
@@ -54,11 +57,21 @@ public class SettingActivity extends AppCompatActivity {
         long timeTo = settings.getTimeTo();
         dateToCalendar = Calendar.getInstance();
         if (timeTo == 0) {
-            dateToCalendar.setTime(new Date());
+            setCalendarToToday(dateToCalendar);
         } else {
             dateToCalendar.setTimeInMillis(timeTo);
         }
         writeDateToInput(dateToCalendar, etBudgetTimeTo);
+    }
+
+    private void setCalendarToToday(Calendar cal) {
+        Calendar tempCal = Calendar.getInstance();
+        tempCal.setTime(new Date());
+        int year = tempCal.get(Calendar.YEAR);
+        int month = tempCal.get(Calendar.MONTH);
+        int day = tempCal.get(Calendar.DAY_OF_MONTH);
+        cal.set(year, month, day, 0, 0, 0);
+        cal.set(Calendar.MILLISECOND, 0);
     }
 
     /**
@@ -79,11 +92,13 @@ public class SettingActivity extends AppCompatActivity {
 
                 if (whichDialog == 1) {
                     dateFromCalendar = Calendar.getInstance();
-                    dateFromCalendar.set(year, month, day);
+                    dateFromCalendar.set(year, month, day, 0, 0, 0);
+                    dateFromCalendar.set(Calendar.MILLISECOND, 0);
                     writeDateToInput(dateFromCalendar, etBudgetTimeFrom);
                 } else if (whichDialog == 2) {
                     dateToCalendar = Calendar.getInstance();
-                    dateToCalendar.set(year, month, day);
+                    dateToCalendar.set(year, month, day, 0, 0, 0);
+                    dateToCalendar.set(Calendar.MILLISECOND, 0);
                     writeDateToInput(dateToCalendar, etBudgetTimeTo);
                 }
 
@@ -110,8 +125,39 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * http://stackoverflow.com/a/12213536
+     * @param v view
+     */
     public void resetSettings(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirm");
+        builder.setMessage("Are you sure? This will delete ALL your data in this application.");
 
+        builder.setPositiveButton("Yes, delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                reset();
+            }
+        });
+
+        builder.setNegativeButton("No, go back", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void reset() {
+        Item.deleteAll(Item.class);
+        Category.deleteAll(Category.class);
+        new Settings(this).reset();
+        finish();
     }
 
     public void saveSettings(View v) {
@@ -128,12 +174,13 @@ public class SettingActivity extends AppCompatActivity {
         long timeTo = dateToCalendar.getTimeInMillis();
         if (timeFrom > timeTo) {
             problem = true;
-            makeToast("\"Date from\" is later than \"date to\".");
+            makeToast("\"Date from\" must be before \"date to\".");
         } else {
             settings.setTimeFrom(dateFromCalendar.getTimeInMillis());
             settings.setTimeTo(dateToCalendar.getTimeInMillis());
             long time = timeTo - timeFrom;
-            int totalDays = (int) (time/(1000*3600*24));//to milis, hours, days
+            int totalDays = (int) (time/(1000*3600*24)); // to milis, hours, days
+            totalDays += 1; // include starting and ending date
             settings.setTotalDays(totalDays);
         }
         if (!problem) {

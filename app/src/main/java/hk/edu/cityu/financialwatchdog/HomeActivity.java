@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,10 +16,7 @@ import java.util.Calendar;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
-import hk.edu.cityu.financialwatchdog.fragments.PageFragmentMonth;
-import hk.edu.cityu.financialwatchdog.fragments.PageFragmentToday;
-import hk.edu.cityu.financialwatchdog.fragments.PageFragmentWeek;
-import hk.edu.cityu.financialwatchdog.fragments.PageFragmentYesterday;
+import hk.edu.cityu.financialwatchdog.entity.Settings;
 import hk.edu.cityu.financialwatchdog.fragments.PieChartFragment;
 import hk.edu.cityu.financialwatchdog.tabs.TabsPagerAdapter;
 
@@ -37,16 +35,16 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initTabs();
         createMockDatabaseData();
+        new Settings(this).setTotalLimit(2000);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == BACK_TO_HOME_PARAM) {
-            ((PieChartFragment) tabsAdapter.getFragments().get(0)).update();
-            ((PieChartFragment) tabsAdapter.getFragments().get(1)).update();
-            ((PieChartFragment) tabsAdapter.getFragments().get(2)).update();
-            ((PieChartFragment) tabsAdapter.getFragments().get(3)).update();
+            for (Fragment fragment : tabsAdapter.getFragments()) {
+                ((PieChartFragment) fragment).update();
+            }
         }
     }
 
