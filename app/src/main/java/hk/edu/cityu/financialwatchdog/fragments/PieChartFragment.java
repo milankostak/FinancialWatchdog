@@ -94,12 +94,7 @@ public abstract class PieChartFragment extends Fragment {
      */
     private Map<Category, Long> getChartDataByDate(List<Calendar> calendars) {
         // get data
-        List<Item> items = Item.findWithQuery(Item.class,
-                "select *" +
-                        "from category c join item i on category = i.category " +
-                        "where time > ? and time < ? " +
-                        "group by i.id",
-                CalendarHelper.getStringArray(calendars));
+        List<Item> items = Item.find(Item.class, "time > ? and time < ?", CalendarHelper.getStringArray(calendars));
         List<Category> cats = Category.listAll();
 
         // init

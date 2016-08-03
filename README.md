@@ -27,4 +27,4 @@ Financial watchdog project during second part of Hong Kong summer school program
 + **string.xml and localization**
 + **About page**
 + **limit warning**
-+ page for detail of selected tab
++ **page for detail of selected tab**

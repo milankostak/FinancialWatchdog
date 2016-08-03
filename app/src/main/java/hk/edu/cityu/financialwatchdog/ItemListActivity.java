@@ -125,36 +125,25 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     private void update() {
-        final Iterator<Item> itemsIterator;
-        final String sqlWhere = "time > ? and time < ? ";
+        String[] timeArray;
         switch (idOfDetail) {
             case SHOW_TODAY_PARAM:
-                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
-                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForToday())
-                );
+                timeArray = CalendarHelper.getStringArray(CalendarHelper.getCalendarsForToday());
                 break;
             case SHOW_YESTERDAY_PARAM:
-                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
-                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForYesterday())
-                );
+                timeArray = CalendarHelper.getStringArray(CalendarHelper.getCalendarsForYesterday());
                 break;
             case SHOW_WEEK_PARAM:
-                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
-                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForWeek())
-                );
+                timeArray = CalendarHelper.getStringArray(CalendarHelper.getCalendarsForWeek());
                 break;
             case SHOW_MONTH_PARAM:
-                itemsIterator = Item.findAsIterator( Item.class, sqlWhere,
-                        CalendarHelper.getStringArray(CalendarHelper.getCalendarsForMonth())
-                );
+                timeArray = CalendarHelper.getStringArray(CalendarHelper.getCalendarsForMonth());
                 break;
-            default: itemsIterator = Item.findAll(Item.class);
+            default:
+                timeArray = CalendarHelper.getStringArray(CalendarHelper.getCalendarsForTotal());
                 break;
         }
-        items = new ArrayList<>();
-        while (itemsIterator.hasNext()) {
-            items.add(itemsIterator.next());
-        }
+        items = Item.find(Item.class, "time > ? and time < ?", timeArray, "", "time desc", "");
 
         adapter = new ItemListAdapter(this, items);
         listView.setAdapter(adapter);
