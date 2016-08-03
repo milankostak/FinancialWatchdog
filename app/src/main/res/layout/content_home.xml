@@ -42,7 +42,7 @@
             android:background="@color/accent_material_light"
             android:gravity="center"
             android:onClick="detail"
-            android:text="@string/total"
+            android:text="@string/detail"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
