@@ -1,8 +1,8 @@
 package hk.edu.cityu.financialwatchdog.fragments;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -55,20 +55,37 @@ public abstract class PieChartFragment extends Fragment {
      * @param numberOfDays number of days that the chart is displaying, 0 means total
      * @return boolean value if the limit was exceeded for given time period
      */
-    public boolean setupPieChart(List<Calendar> calendars, int numberOfDays) {
+    public void setupPieChart(List<Calendar> calendars, int numberOfDays) {
+        // get data
         Map<Category, Long> categoriesMap = getChartDataByDate(calendars);
 
+        // prepare object
         List<Entry> entries = new ArrayList<>();
         List<String> labels = new ArrayList<>();
         List<Integer> colors = new ArrayList<>();
 
+        // set data into chart and get overLimit
         boolean isOverLimit = setDataToChart(categoriesMap, entries, labels, colors, numberOfDays);
 
-        // setupPieChart charts objects
+        // set charts objects
         setupPieChart(pieChart, entries, labels, colors);
 
-        return isOverLimit;
+        // set warning text view
+        setWarnings(isOverLimit);
     }
+
+    /**
+     * Sets visibility of warning
+     * @param isOverLimit if chart is over limit
+     */
+    private void setWarnings(boolean isOverLimit) {
+        if (isOverLimit) {
+            overLimitText.setVisibility(View.VISIBLE);
+        } else {
+            overLimitText.setVisibility(View.GONE);
+        }
+    }
+
 
     /**
      * Loads data from database a transforms it to map where each category has its spend money

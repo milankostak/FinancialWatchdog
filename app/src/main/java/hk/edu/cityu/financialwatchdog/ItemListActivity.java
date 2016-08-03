@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -101,6 +103,25 @@ public class ItemListActivity extends AppCompatActivity {
         idOfDetail = getIntent().getExtras().getInt(ID_PARAMETER);
 
         update();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_add_item) {
+            Intent i = new Intent(ItemListActivity.this, AddActivity.class);
+            i.putExtra(AddActivity.EDIT_PARAMETER, false);
+            startActivityForResult(i, BACK_ITEM_DETAIL_PARAM);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void update() {

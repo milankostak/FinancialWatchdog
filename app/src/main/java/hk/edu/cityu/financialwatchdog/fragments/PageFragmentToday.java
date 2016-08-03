@@ -36,14 +36,7 @@ public class PageFragmentToday extends PieChartFragment {
     @Override
     void initPieChart() {
         List<Calendar> calendars = CalendarHelper.getCalendarsForToday();
-
-        boolean isOverLimit = setupPieChart(calendars, 1);
-
-        if (isOverLimit) {
-            overLimitText.setVisibility(View.VISIBLE);
-        } else {
-            overLimitText.setVisibility(View.GONE);
-        }
+        setupPieChart(calendars, 1);
     }
 
 }
