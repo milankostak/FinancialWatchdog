@@ -21,9 +21,10 @@ import hk.edu.cityu.financialwatchdog.fragments.PageFragmentWeek;
 import hk.edu.cityu.financialwatchdog.fragments.PageFragmentYesterday;
 import hk.edu.cityu.financialwatchdog.tabs.TabsPagerAdapter;
 
+import static hk.edu.cityu.financialwatchdog.ResultConstants.*;
+
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int UPDATE_PARAMETER = 32;
     private TabsPagerAdapter tabsAdapter;
 
     @Override
@@ -39,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == UPDATE_PARAMETER) {
+        if (requestCode == BACK_TO_HOME_PARAM) {
             ((PageFragmentToday) tabsAdapter.getFragments().get(0)).update();
             ((PageFragmentYesterday) tabsAdapter.getFragments().get(1)).update();
             ((PageFragmentWeek) tabsAdapter.getFragments().get(2)).update();
@@ -156,13 +157,13 @@ public class HomeActivity extends AppCompatActivity {
         Log.i("clicks", "You add a record.");
         Intent i = new Intent(this, AddActivity.class);
         i.putExtra(AddActivity.EDIT_PARAMETER, false);
-        startActivityForResult(i, UPDATE_PARAMETER);
+        startActivityForResult(i, BACK_TO_HOME_PARAM);
     }
 
     public void detail(View v){
         Log.i("clicks", "see detail");
         Intent i = new Intent(this, ItemListActivity.class);
-        startActivityForResult(i, UPDATE_PARAMETER);
+        startActivityForResult(i, BACK_TO_HOME_PARAM);
     }
 
 

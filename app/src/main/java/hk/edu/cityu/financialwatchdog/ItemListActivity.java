@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import hk.edu.cityu.financialwatchdog.entity.Item;
+import static hk.edu.cityu.financialwatchdog.ResultConstants.*;
 
 /**
  * Created by Weida on 2016/7/29.
@@ -64,12 +65,11 @@ public class ItemListActivity extends AppCompatActivity {
     private ListView listView;
     private ItemListAdapter adapter;
 
-    private static final int RESULT_PARAMETER = 31;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_PARAMETER) {
+        if (requestCode == BACK_ITEM_DETAIL_PARAM) {
             update();
         }
     }
@@ -87,7 +87,7 @@ public class ItemListActivity extends AppCompatActivity {
                 Intent i = new Intent(ItemListActivity.this, AddActivity.class);
                 i.putExtra(AddActivity.EDIT_PARAMETER, true);
                 i.putExtra(AddActivity.ID_PARAMETER, item.getId());
-                startActivityForResult(i, RESULT_PARAMETER);
+                startActivityForResult(i, BACK_ITEM_DETAIL_PARAM);
             }
         });
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 import hk.edu.cityu.financialwatchdog.entity.Category;
-import hk.edu.cityu.financialwatchdog.entity.Item;
+import static hk.edu.cityu.financialwatchdog.ResultConstants.*;
 
 class CategoryListAdapter extends ArrayAdapter<Category> {
 
@@ -55,12 +52,11 @@ public class CategoryListActivity extends AppCompatActivity {
     private ListView listView;
     private CategoryListAdapter adapter;
 
-    private static final int RESULT_PARAMETER = 33;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_PARAMETER) {
+        if (requestCode == BACK_CATEGORY_DETAIL_PARAM) {
             update();
         }
     }
@@ -78,7 +74,7 @@ public class CategoryListActivity extends AppCompatActivity {
                 Intent i = new Intent(CategoryListActivity.this, AddActivity.class);
                 i.putExtra(AddActivity.EDIT_PARAMETER, true);
                 i.putExtra(AddActivity.ID_PARAMETER, item.getId());
-                startActivityForResult(i, RESULT_PARAMETER);*/
+                startActivityForResult(i, BACK_CATEGORY_DETAIL_PARAM);*/
             }
         });
 
