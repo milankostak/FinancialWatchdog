@@ -21,4 +21,15 @@
     <string name="week">Týden</string>
     <string name="month">Měsíc</string>
     <string name="total">Celkově</string>
+    <string name="about">O aplikaci</string>
+    <string name="about_msg">" Naše aplikace Vám pomůže lépe spravovat Váše výdaje. Už se nemusíte dále starat o zpracování dat a jejich zobrazení, Hlídač výdajů to udělá za Vás..."</string>
+    <string name="categories">Kategorie</string>
+    <string name="color">Barva</string>
+    <string name="delete">SMAZAT</string>
+    <string name="detail">Detail</string>
+    <string name="limit">Limit</string>
+    <string name="made_by">Autoři:</string>
+    <string name="set">Nastavit</string>
+    <string name="today">Dnes</string>
+    <string name="yesterday">Včera</string>
 </resources>

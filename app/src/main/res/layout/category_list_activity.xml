@@ -22,7 +22,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:text="Name"
+            android:text="@string/expenditure"
             android:textColor="@color/accent_material_light"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:text="Color"
+            android:text="@string/color"
             android:textColor="@color/accent_material_light"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -50,7 +50,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:text="Limit"
+            android:text="@string/limit"
             android:textColor="@color/accent_material_light"
             android:textSize="18sp"
             android:textStyle="bold" />

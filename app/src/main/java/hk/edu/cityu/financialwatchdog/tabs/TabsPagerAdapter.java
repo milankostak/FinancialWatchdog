@@ -27,11 +27,11 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     }
 
     private void setTitles(Resources resources) {
-        title[0] = resources.getString( R.string.day );
-        title[1] = "yesterday";//resources.getString( R.string.yesterday );
+        title[0] = resources.getString( R.string.today );
+        title[1] = resources.getString( R.string.yesterday );
         title[2] = resources.getString( R.string.week );
         title[3] = resources.getString( R.string.month );
-        //title[3] = resources.getString( R.string.total );
+        //title[4] = resources.getString( R.string.total );
     }
 
     @Override

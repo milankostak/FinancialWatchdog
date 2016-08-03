@@ -6,19 +6,33 @@
     <string name="reset">RESET</string>
     <string name="ok">OK</string>
     <string name="category">Category</string>
+    <string name="categories">Categories</string>
     <string name="currency">Currency</string>
     <string name="expenditure">Name</string>
     <string name="price">Price</string>
     <string name="time">Time</string>
     <string name="save">SAVE</string>
-    <string name="add_expenditure">Add +</string>
+    <string name="add_expenditure">Add</string>
     <string name="test" translatable="false">T-E-S-T</string>
     <string name="toast_insert_name">Insert name.</string>
     <string name="toast_select_category">Select a category.</string>
     <string name="toast_insert_price">Insert price.</string>
     <string name="toast_insert_positive_price">Insert positive price.</string>
-    <string name="day">Day</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
     <string name="week">Week</string>
     <string name="month">Month</string>
     <string name="total">Total</string>
+    <string name="detail">Detail</string>
+    <string name="about">About</string>
+    <string name="about_msg">" Our application will help you work with your budget more efficiently. You do not have to calculate your finance on your own  any more, Financial Watchdog will do it instead of you..."</string>
+    <string name="made_by">Made by:</string>
+    <string name="matej" translatable="false">Drdla MATĚJ</string>
+    <string name="milan" translatable="false">Košťák MILAN</string>
+    <string name="katerina" translatable="false">Kvapilová KATEŘINA</string>
+    <string name="dennis" translatable="false">陳韋達</string>
+    <string name="delete">DELETE</string>
+    <string name="color">Color</string>
+    <string name="limit">Limit</string>
+    <string name="set">Set</string>
 </resources>
