@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="2dp"
                 android:layout_marginTop="50dp"
@@ -37,13 +37,24 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="2dp"
                 android:background="#FFFFFF"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="left|fill_vertical"
-                android:text="@string/total_time_left"
+                android:text="Time From"
+                android:textColor="#6A6A61"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="left|fill_vertical"
+                android:text="Time To"
                 android:textColor="#6A6A61"
                 android:textSize="20sp" />
 
@@ -81,7 +92,7 @@
 
             <EditText
                 android:id="@+id/etTotalBudget"
-                android:layout_width="160dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="2dp"
@@ -89,17 +100,35 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:textColor="#BFBFBF"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/etTimeLeft"
-                android:layout_width="160dp"
+                android:id="@+id/etBudgetTimeFrom"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="2dp"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:textColor="#BFBFBF"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/etBudgetTimeTo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:textColor="#BFBFBF"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,14 +136,13 @@
                 android:gravity="bottom">
 
                 <Button
-                    android:id="@+id/btnOk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
                     android:background="@color/accent_material_light"
                     android:gravity="center"
                     android:onClick="saveSettings"
-                    android:text="@string/ok"
+                    android:text="@string/save"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
             </LinearLayout>

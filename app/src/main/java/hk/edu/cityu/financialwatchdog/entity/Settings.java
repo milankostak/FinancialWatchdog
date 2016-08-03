@@ -20,6 +20,12 @@ public class Settings {
     private static final String TOTAL_LIMIT_NAME = "TotalLimit";
     private long totalLimit;
 
+    private static final String TIME_FROM_NAME = "TimeFrom";
+    private long timeFrom;
+
+    private static final String TIME_TO_NAME = "TimeTo";
+    private long timeTo;
+
     private static final String LOCATION_PERMISSION_NAME = "LocationPermission";
     private boolean locationPermissionDenied;
 
@@ -41,6 +47,8 @@ public class Settings {
         editor = settings.edit();
 
         totalLimit = settings.getLong(TOTAL_LIMIT_NAME, 0);
+        timeFrom = settings.getLong(TIME_FROM_NAME, 0);
+        timeTo = settings.getLong(TIME_TO_NAME, 0);
         locationPermissionDenied = settings.getBoolean(LOCATION_PERMISSION_NAME, false);
     }
 
@@ -51,6 +59,26 @@ public class Settings {
     public void setTotalLimit(long totalLimit) {
         this.totalLimit = totalLimit;
         editor.putLong(TOTAL_LIMIT_NAME, totalLimit);
+        editor.apply();
+    }
+
+    public long getTimeFrom() {
+        return timeFrom;
+    }
+
+    public void setTimeFrom(long timeFrom) {
+        this.timeFrom = timeFrom;
+        editor.putLong(TIME_FROM_NAME, timeFrom);
+        editor.apply();
+    }
+
+    public long getTimeTo() {
+        return timeTo;
+    }
+
+    public void setTimeTo(long timeTo) {
+        this.timeTo = timeTo;
+        editor.putLong(TIME_TO_NAME, timeTo);
         editor.apply();
     }
 
