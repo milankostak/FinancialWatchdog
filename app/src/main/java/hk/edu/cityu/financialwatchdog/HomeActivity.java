@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,13 +19,15 @@ import hk.edu.cityu.financialwatchdog.fragments.PageFragmentMonth;
 import hk.edu.cityu.financialwatchdog.fragments.PageFragmentToday;
 import hk.edu.cityu.financialwatchdog.fragments.PageFragmentWeek;
 import hk.edu.cityu.financialwatchdog.fragments.PageFragmentYesterday;
+import hk.edu.cityu.financialwatchdog.fragments.PieChartFragment;
 import hk.edu.cityu.financialwatchdog.tabs.TabsPagerAdapter;
 
-import static hk.edu.cityu.financialwatchdog.ResultConstants.*;
+import static hk.edu.cityu.financialwatchdog.ResultConstants.BACK_TO_HOME_PARAM;
 
 public class HomeActivity extends AppCompatActivity {
 
     private TabsPagerAdapter tabsAdapter;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == BACK_TO_HOME_PARAM) {
-            ((PageFragmentToday) tabsAdapter.getFragments().get(0)).update();
-            ((PageFragmentYesterday) tabsAdapter.getFragments().get(1)).update();
-            ((PageFragmentWeek) tabsAdapter.getFragments().get(2)).update();
-            ((PageFragmentMonth) tabsAdapter.getFragments().get(3)).update();
+            ((PieChartFragment) tabsAdapter.getFragments().get(0)).update();
+            ((PieChartFragment) tabsAdapter.getFragments().get(1)).update();
+            ((PieChartFragment) tabsAdapter.getFragments().get(2)).update();
+            ((PieChartFragment) tabsAdapter.getFragments().get(3)).update();
         }
     }
 
@@ -53,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
      * Initialization of tab layout with pie charts
      */
     private void initTabs() {
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
 
         tabsAdapter = new TabsPagerAdapter(getSupportFragmentManager(), getResources());
@@ -154,19 +155,17 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addThing(View v) {
-        Log.i("clicks", "You add a record.");
-        Intent i = new Intent(this, AddActivity.class);
+    public void createItem(View v) {
+        Intent i = new Intent(HomeActivity.this, AddActivity.class);
         i.putExtra(AddActivity.EDIT_PARAMETER, false);
         startActivityForResult(i, BACK_TO_HOME_PARAM);
     }
 
-    public void detail(View v){
-        Log.i("clicks", "see detail");
-        Intent i = new Intent(this, ItemListActivity.class);
+    public void showDetailForPeriod(View v){
+        //PieChartFragment
+        //tabLayout.
+        Intent i = new Intent(HomeActivity.this, ItemListActivity.class);
         startActivityForResult(i, BACK_TO_HOME_PARAM);
     }
-
-
 
 }

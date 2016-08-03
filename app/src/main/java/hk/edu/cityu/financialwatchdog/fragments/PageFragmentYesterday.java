@@ -18,12 +18,10 @@ import hk.edu.cityu.financialwatchdog.R;
 /**
  * Fragment displaying pie chart for yesterday
  */
-public class PageFragmentYesterday extends Fragment {
-
-    private PieChart pieChart;
-    private TextView overLimitText;
+public class PageFragmentYesterday  extends PieChartFragment {
 
     public PageFragmentYesterday() {
+        super(SHOW_YESTERDAY_PARAM);
     }
 
     @Override
@@ -36,11 +34,8 @@ public class PageFragmentYesterday extends Fragment {
         return rootView;
     }
 
-    public void update() {
-        initPieChart();
-    }
-
-    private void initPieChart() {
+    @Override
+    void initPieChart() {
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(new Date());
         cal1.add(Calendar.DAY_OF_YEAR, -1);

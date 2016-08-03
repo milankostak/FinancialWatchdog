@@ -18,12 +18,10 @@ import hk.edu.cityu.financialwatchdog.helpers.PieChartHelper;
 /**
  * Fragment displaying pie chart for last 7 days
  */
-public class PageFragmentWeek extends Fragment {
-
-    private PieChart pieChart;
-    private TextView overLimitText;
+public class PageFragmentWeek  extends PieChartFragment {
 
     public PageFragmentWeek() {
+        super(SHOW_WEEK_PARAM);
     }
 
     @Override
@@ -36,11 +34,8 @@ public class PageFragmentWeek extends Fragment {
         return rootView;
     }
 
-    public void update() {
-        initPieChart();
-    }
-
-    private void initPieChart() {
+    @Override
+    void initPieChart() {
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(new Date());
         cal1.add(Calendar.DAY_OF_YEAR, -6);

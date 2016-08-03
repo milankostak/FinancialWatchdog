@@ -25,7 +25,7 @@
             android:layout_weight="1"
             android:background="@color/accent_material_light"
             android:gravity="center"
-            android:onClick="addThing"
+            android:onClick="createItem"
             android:text="@string/add_expenditure"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:background="@color/accent_material_light"
             android:gravity="center"
-            android:onClick="detail"
+            android:onClick="showDetailForPeriod"
             android:text="@string/detail"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
