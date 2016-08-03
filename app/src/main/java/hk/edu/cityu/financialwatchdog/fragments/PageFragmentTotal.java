@@ -15,29 +15,29 @@ import hk.edu.cityu.financialwatchdog.R;
 import hk.edu.cityu.financialwatchdog.helpers.CalendarHelper;
 
 /**
- * Fragment displaying pie chart for today
+ * Fragment displaying pie chart of all data
  */
-public class PageFragmentToday extends PieChartFragment {
+public class PageFragmentTotal extends PieChartFragment {
 
-    public PageFragmentToday() {
-        super(SHOW_TODAY_PARAM);
+    public PageFragmentTotal() {
+        super(SHOW_TOTAL_PARAM);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.page_fragment_today, container, false);
-        pieChart = (PieChart) rootView.findViewById(R.id.pieChartToday);
-        overLimitText = (TextView) rootView.findViewById(R.id.overLimitToday);
+        View rootView = inflater.inflate(R.layout.page_fragment_total, container, false);
+        pieChart = (PieChart) rootView.findViewById(R.id.pieChartTotal);
+        overLimitText = (TextView) rootView.findViewById(R.id.overLimitTotal);
         initPieChart();
         return rootView;
     }
 
     @Override
     void initPieChart() {
-        List<Calendar> calendars = CalendarHelper.getCalendarsForToday();
+        List<Calendar> calendars = CalendarHelper.getCalendarsForTotal();
 
-        boolean isOverLimit = setupPieChart(calendars, 1);
+        boolean isOverLimit = setupPieChart(calendars, 30);
 
         if (isOverLimit) {
             overLimitText.setVisibility(View.VISIBLE);
@@ -45,5 +45,4 @@ public class PageFragmentToday extends PieChartFragment {
             overLimitText.setVisibility(View.GONE);
         }
     }
-
 }

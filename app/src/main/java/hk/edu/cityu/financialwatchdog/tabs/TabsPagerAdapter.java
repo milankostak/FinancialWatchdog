@@ -13,7 +13,7 @@ import hk.edu.cityu.financialwatchdog.fragments.*;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int NUMBER_OF_TABS = 4;
+    private static final int NUMBER_OF_TABS = 5;
     private final List<Fragment> fragments = new ArrayList<>(NUMBER_OF_TABS);
     private final String[] title = new String[NUMBER_OF_TABS];
 
@@ -24,6 +24,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         fragments.add(new PageFragmentYesterday());
         fragments.add(new PageFragmentWeek());
         fragments.add(new PageFragmentMonth());
+        fragments.add(new PageFragmentTotal());
     }
 
     private void setTitles(Resources resources) {
@@ -31,7 +32,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         title[1] = resources.getString( R.string.yesterday );
         title[2] = resources.getString( R.string.week );
         title[3] = resources.getString( R.string.month );
-        //title[4] = resources.getString( R.string.total );
+        title[4] = resources.getString( R.string.total );
     }
 
     @Override

@@ -13,7 +13,6 @@ import java.util.List;
 
 import hk.edu.cityu.financialwatchdog.R;
 import hk.edu.cityu.financialwatchdog.helpers.CalendarHelper;
-import hk.edu.cityu.financialwatchdog.helpers.PieChartHelper;
 
 /**
  * Fragment displaying pie chart for last 30 days
@@ -38,7 +37,7 @@ public class PageFragmentMonth extends PieChartFragment {
     void initPieChart() {
         List<Calendar> calendars = CalendarHelper.getCalendarsForMonth();
 
-        boolean isOverLimit = PieChartHelper.set(pieChart, getActivity(), calendars, 30);
+        boolean isOverLimit = setupPieChart(calendars, 30);
 
         if (isOverLimit) {
             overLimitText.setVisibility(View.VISIBLE);

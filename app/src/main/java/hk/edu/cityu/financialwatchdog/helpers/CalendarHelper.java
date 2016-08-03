@@ -83,8 +83,24 @@ public class CalendarHelper {
         cal2.set(Calendar.HOUR_OF_DAY, 23);
         cal2.set(Calendar.MINUTE, 59);
         cal2.set(Calendar.SECOND, 59);
-        List<Calendar> calendars = new ArrayList<>(2);
 
+        List<Calendar> calendars = new ArrayList<>(2);
+        calendars.add(cal1);
+        calendars.add(cal2);
+        return calendars;
+    }
+
+    public static List<Calendar> getCalendarsForTotal() {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(new Date());
+        cal1.set(Calendar.YEAR, 1);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(new Date());
+        cal2.set(Calendar.HOUR_OF_DAY, 23);
+        cal2.set(Calendar.MINUTE, 59);
+        cal2.set(Calendar.SECOND, 59);
+
+        List<Calendar> calendars = new ArrayList<>(2);
         calendars.add(cal1);
         calendars.add(cal2);
         return calendars;
