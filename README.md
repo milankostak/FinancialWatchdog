@@ -7,8 +7,9 @@ Financial watchdog project during second part of Hong Kong summer school program
 + **settings**
 	+ **backend**
 	+ **layout**
+	+ **saving**
 + currency
-	+ find API - Milan will do
+	+ find API
 	+ save data, (somehow) give user options
 + **adding items**
 	+ **missing location**
@@ -23,6 +24,7 @@ Financial watchdog project during second part of Hong Kong summer school program
 + **categories**
 	+ **backend**
 	+ **layout for CRUD operations**
-+ **string.xml and localization - _Matej will keep updated_**
++ **string.xml and localization**
 + **About page**
++ **limit warning**
 + page for detail of selected tab
