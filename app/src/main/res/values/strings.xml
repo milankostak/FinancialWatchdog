@@ -36,4 +36,6 @@
     <string name="limit">Limit</string>
     <string name="set">Set</string>
     <string name="remaining_money">Remaining money</string>
+    <string name="over_the_limit_present">You are over the limit for this time period.</string>
+    <string name="over_the_limit_past">You were over the limit for this time period.</string>
 </resources>

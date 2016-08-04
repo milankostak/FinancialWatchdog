@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="You were over the limit for this time period."
+        android:text="@string/over_the_limit_past"
         android:textColor="@android:color/holo_red_dark"
         android:visibility="gone" />
 

@@ -32,4 +32,6 @@
     <string name="today">Dnes</string>
     <string name="yesterday">Včera</string>
     <string name="remaining_money">Zbývající finance</string>
+    <string name="over_the_limit_present">Překročil jsi stanovený limit pro dané období.</string>
+    <string name="over_the_limit_past">Překročil jsi stanovený limit pro dané období.</string>
 </resources>
