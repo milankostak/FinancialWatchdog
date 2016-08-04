@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -75,7 +74,7 @@ public abstract class PieChartFragment extends Fragment {
         boolean isOverLimit = setDataToChart(categoriesMap, entries, labels, colors, numberOfDays);
 
         // set charts objects
-        setupPieChart(pieChart, entries, labels, colors);
+        setupPieChart(entries, labels, colors);
 
         // set warning text view
         setWarnings(isOverLimit);
@@ -168,12 +167,11 @@ public abstract class PieChartFragment extends Fragment {
 
     /**
      * Setup pie charts with prepared data
-     * @param pieChart pie chart component
      * @param entries entries
      * @param labels labels
      * @param colors colors
      */
-    private void setupPieChart(PieChart pieChart, List<Entry> entries, List<String> labels, List<Integer> colors) {
+    private void setupPieChart(List<Entry> entries, List<String> labels, List<Integer> colors) {
         PieDataSet dataset = new PieDataSet(entries, "");
         dataset.setColors(colors);
         PieData data = new PieData(labels, dataset);
