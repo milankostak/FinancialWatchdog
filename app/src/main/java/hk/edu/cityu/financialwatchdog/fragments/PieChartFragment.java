@@ -5,7 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -21,6 +23,10 @@ import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
 import hk.edu.cityu.financialwatchdog.helpers.CalendarHelper;
 
+/**
+ * Abstract class for pie chart handling, implements Fragment for inserting into tab layout
+ * Chart from: https://github.com/PhilJay/MPAndroidChart
+ */
 public abstract class PieChartFragment extends Fragment {
 
     public static final int SHOW_TODAY_PARAM = 1;
@@ -168,12 +174,17 @@ public abstract class PieChartFragment extends Fragment {
      * @param colors colors
      */
     private void setupPieChart(PieChart pieChart, List<Entry> entries, List<String> labels, List<Integer> colors) {
-        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
+        PieDataSet dataset = new PieDataSet(entries, "");
         PieData data = new PieData(labels, dataset);
         dataset.setColors(colors);
-        pieChart.setDescription("Description");
+        pieChart.setDescription("");
         pieChart.setData(data);
         pieChart.animateY(1000);
+
+        Legend legend = pieChart.getLegend();
+        legend.setWordWrapEnabled(true);
+        legend.setForm(Legend.LegendForm.CIRCLE);
+        legend.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
     }
 
 }
