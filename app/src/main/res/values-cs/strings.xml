@@ -17,7 +17,6 @@
     <string name="toast_select_category">Vyberte prosím kategorii.</string>
     <string name="toast_insert_price">Vložte prosím cenu.</string>
     <string name="toast_insert_positive_price">Vložte prosím pozitivní cenu.</string>
-    <string name="day">Den</string>
     <string name="week">Týden</string>
     <string name="month">Měsíc</string>
     <string name="total">Celkově</string>
@@ -32,4 +31,5 @@
     <string name="set">Nastavit</string>
     <string name="today">Dnes</string>
     <string name="yesterday">Včera</string>
+    <string name="remaining_money">Zbývající finance</string>
 </resources>
