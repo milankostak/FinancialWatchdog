@@ -92,7 +92,6 @@ public abstract class PieChartFragment extends Fragment {
         }
     }
 
-
     /**
      * Loads data from database a transforms it to map where each category has its spend money
      * @param calendars calendar from and to
@@ -141,7 +140,7 @@ public abstract class PieChartFragment extends Fragment {
         }
 
         Settings settings = new Settings(getActivity());
-        // setupPieChart remaining money
+        // set remaining money
         long totalLimit = settings.getTotalLimit();
         long currentLimit;
         if (numberOfDays == 0) {
@@ -175,16 +174,18 @@ public abstract class PieChartFragment extends Fragment {
      */
     private void setupPieChart(PieChart pieChart, List<Entry> entries, List<String> labels, List<Integer> colors) {
         PieDataSet dataset = new PieDataSet(entries, "");
-        PieData data = new PieData(labels, dataset);
         dataset.setColors(colors);
+        PieData data = new PieData(labels, dataset);
+
         pieChart.setDescription("");
         pieChart.setData(data);
-        pieChart.animateY(1000);
+        pieChart.animateY(1000); // animate the chart, possible to add second parameter and choose aniamtion
+        pieChart.setDrawSliceText(false);// hide labels inside the chart
 
         Legend legend = pieChart.getLegend();
-        legend.setWordWrapEnabled(true);
-        legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
+        legend.setWordWrapEnabled(true); // set wrap for legend
+        legend.setForm(Legend.LegendForm.CIRCLE); // circle icon for legend
+        legend.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER); // center the legend below the chart
     }
 
 }

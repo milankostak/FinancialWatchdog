@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Helper class enabling convenient access to calendars for given time periods
+ */
 public class CalendarHelper {
 
     public static String[] getStringArray(List<Calendar> calendars) {
@@ -14,14 +17,16 @@ public class CalendarHelper {
         };
     }
 
-    public static List<Calendar> getCalendarsForToday() {
+    private static List<Calendar> getCalendars(int days1, int days2) {
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(new Date());
+        cal1.add(Calendar.DAY_OF_YEAR, days1);
         cal1.set(Calendar.HOUR_OF_DAY, 0);
         cal1.set(Calendar.MINUTE, 0);
         cal1.set(Calendar.SECOND, 0);
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(new Date());
+        cal2.add(Calendar.DAY_OF_YEAR, days2);
         cal2.set(Calendar.HOUR_OF_DAY, 23);
         cal2.set(Calendar.MINUTE, 59);
         cal2.set(Calendar.SECOND, 59);
@@ -30,64 +35,22 @@ public class CalendarHelper {
         calendars.add(cal1);
         calendars.add(cal2);
         return calendars;
+    }
+
+    public static List<Calendar> getCalendarsForToday() {
+        return getCalendars(0, 0);
     }
 
     public static List<Calendar> getCalendarsForYesterday() {
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(new Date());
-        cal1.add(Calendar.DAY_OF_YEAR, -1);
-        cal1.set(Calendar.HOUR_OF_DAY, 0);
-        cal1.set(Calendar.MINUTE, 0);
-        cal1.set(Calendar.SECOND, 0);
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(new Date());
-        cal2.add(Calendar.DAY_OF_YEAR, -1);
-        cal2.set(Calendar.HOUR_OF_DAY, 23);
-        cal2.set(Calendar.MINUTE, 59);
-        cal2.set(Calendar.SECOND, 59);
-
-        List<Calendar> calendars = new ArrayList<>(2);
-        calendars.add(cal1);
-        calendars.add(cal2);
-        return calendars;
+        return getCalendars(-1, -1);
     }
 
     public static List<Calendar> getCalendarsForWeek() {
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(new Date());
-        cal1.add(Calendar.DAY_OF_YEAR, -6);
-        cal1.set(Calendar.HOUR_OF_DAY, 0);
-        cal1.set(Calendar.MINUTE, 0);
-        cal1.set(Calendar.SECOND, 0);
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(new Date());
-        cal2.set(Calendar.HOUR_OF_DAY, 23);
-        cal2.set(Calendar.MINUTE, 59);
-        cal2.set(Calendar.SECOND, 59);
-
-        List<Calendar> calendars = new ArrayList<>(2);
-        calendars.add(cal1);
-        calendars.add(cal2);
-        return calendars;
+        return getCalendars(-6, 0);
     }
 
     public static List<Calendar> getCalendarsForMonth() {
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(new Date());
-        cal1.add(Calendar.DAY_OF_YEAR, -29);
-        cal1.set(Calendar.HOUR_OF_DAY, 0);
-        cal1.set(Calendar.MINUTE, 0);
-        cal1.set(Calendar.SECOND, 0);
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(new Date());
-        cal2.set(Calendar.HOUR_OF_DAY, 23);
-        cal2.set(Calendar.MINUTE, 59);
-        cal2.set(Calendar.SECOND, 59);
-
-        List<Calendar> calendars = new ArrayList<>(2);
-        calendars.add(cal1);
-        calendars.add(cal2);
-        return calendars;
+        return getCalendars(-29, 0);
     }
 
     public static List<Calendar> getCalendarsForTotal() {
