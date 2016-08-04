@@ -1,24 +1,38 @@
 <resources>
-    <string name="app_name">花錢小助手</string>
-    <string name="action_settings">設置</string>
-    <string name="total_budget">總預算</string>
-    <string name="total_time_left">剩餘時間</string>
+    <string name="app_name">财务帮手</string>
+    <string name="action_settings">设定</string>
+    <string name="total_budget">总预算</string>
+    <string name="total_time_left">剩余时间</string>
     <string name="reset">重置</string>
     <string name="ok">完成</string>
-    <string name="category">類別</string>
-    <string name="currency">貨幣</string>
-    <string name="expenditure">支出</string>
-    <string name="price">花費</string>
-    <string name="time">時間</string>
-    <string name="save">保存</string>
-    <string name="add_expenditure">新建事件</string>
-    <string name="test">T-E-S-T</string>
-    <string name="toast_insert_name">名稱</string>
-    <string name="toast_select_category">類別</string>
-    <string name="toast_insert_price">價格</string>
-    <string name="toast_insert_positive_price">有效價格</string>
-    <string name="day">日</string>
+    <string name="category">种类</string>
+    <string name="categories">种类</string>
+    <string name="currency">货币</string>
+    <string name="expenditure">名称</string>
+    <string name="price">价钱</string>
+    <string name="time">时间</string>
+    <string name="save">储存</string>
+    <string name="add_expenditure">新增</string>
+    <string name="test" translatable="false">T-E-S-T</string>
+    <string name="toast_insert_name">请输入名称</string>
+    <string name="toast_select_category">请选一个种类</string>
+    <string name="toast_insert_price">请填入价格</string>
+    <string name="toast_insert_positive_price">价格不可为负</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
     <string name="week">周</string>
     <string name="month">月</string>
-    <string name="total">總計</string>
+    <string name="total">总计</string>
+    <string name="detail">细项</string>
+    <string name="about">关于我们</string>
+    <string name="about_msg">"有了财务帮手，使你的金钱掌管更有效率，只要一秒钟的时间，管理你的每一刻。Financial Watchdog, 丰富你的每一天。"</string>
+    <string name="made_by">制作：</string>
+    <string name="matej" translatable="false">Drdla MATĚJ</string>
+    <string name="milan" translatable="false">Košťák MILAN</string>
+    <string name="katerina" translatable="false">Kvapilová KATEŘINA</string>
+    <string name="dennis" translatable="false">Weita CHEN</string>
+    <string name="delete">删除</string>
+    <string name="color">颜色</string>
+    <string name="limit">上限</string>
+    <string name="set">设定</string>
 </resources>
