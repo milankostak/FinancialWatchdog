@@ -1,24 +1,38 @@
 <resources>
-    <string name="app_name">財務小幫手</string>
+    <string name="app_name">財務幫手</string>
     <string name="action_settings">設定</string>
     <string name="total_budget">總預算</string>
     <string name="total_time_left">剩餘時間</string>
-    <string name="reset">重新設定</string>
-    <string name="ok">OK</string>
-    <string name="category">類型</string>
+    <string name="reset">重置</string>
+    <string name="ok">完成</string>
+    <string name="category">種類</string>
+    <string name="categories">種類</string>
     <string name="currency">貨幣</string>
-    <string name="expenditure">名字</string>
+    <string name="expenditure">名稱</string>
     <string name="price">價錢</string>
     <string name="time">時間</string>
     <string name="save">儲存</string>
-    <string name="add_expenditure">新增花費</string>
-    <string name="test">T-E-S-T</string>
-    <string name="toast_insert_name">請新增名字</string>
+    <string name="add_expenditure">新增</string>
+    <string name="test" translatable="false">T-E-S-T</string>
+    <string name="toast_insert_name">請輸入名稱</string>
     <string name="toast_select_category">請選擇一個種類</string>
-    <string name="toast_insert_price">請填入價錢</string>
-    <string name="toast_insert_positive_price">請填入非負的價錢</string>
-    <string name="day">天</string>
+    <string name="toast_insert_price">請填入價格</string>
+    <string name="toast_insert_positive_price">價格不可為負</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
     <string name="week">週</string>
     <string name="month">月</string>
-    <string name="total">總結</string>
+    <string name="total">總計</string>
+    <string name="detail">細項</string>
+    <string name="about">關於我們</string>
+    <string name="about_msg">"有了財務幫手，使你的金錢控管更有效率，只要一秒鐘的時間，管理你的每一刻。Financial Watchdog,豐富你的每一天。"</string>
+    <string name="made_by">製作：</string>
+    <string name="matej" translatable="false">Drdla MATĚJ</string>
+    <string name="milan" translatable="false">Košťák MILAN</string>
+    <string name="katerina" translatable="false">Kvapilová KATEŘINA</string>
+    <string name="dennis" translatable="false">Weita CHEN</string>
+    <string name="delete">刪除</string>
+    <string name="color">顏色</string>
+    <string name="limit">上限</string>
+    <string name="set">設定</string>
 </resources>
