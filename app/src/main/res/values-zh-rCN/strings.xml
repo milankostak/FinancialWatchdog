@@ -20,7 +20,7 @@
     <string name="toast_insert_positive_price">价格不可为负</string>
     <string name="today">今天</string>
     <string name="yesterday">昨天</string>
-    <string name="week">周</string>
+    <string name="week">週</string>
     <string name="month">月</string>
     <string name="total">总计</string>
     <string name="detail">细项</string>
