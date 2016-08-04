@@ -1,30 +1,11 @@
-# FinancialWatchdog
-Financial watchdog project during second part of Hong Kong summer school program
+# Why and who?
+Majority of students abroad needs to work with their budgets. Some of them have higher
+one, some smaller. But each of them have to calculate and think about the money they have
+and money they spend every day.
 
-# TODO list
-+ **piechart customizations**
-+ **fill piechart with data**
-+ **settings**
-	+ **backend**
-	+ **layout**
-	+ **saving**
-+ currency
-	+ find API
-	+ save data, (somehow) give user options
-+ **adding items**
-	+ **missing location**
-	+ **missing date**
-	+ missing selection currency
-	+ **layout fixes**
-+ **tab layout on home activity for piechart**
-+ **layout of home activity**
-+ **layout of list of items**
-+ **layout of item detail**
-+ **editing of item**
-+ **categories**
-	+ **backend**
-	+ **layout for CRUD operations**
-+ **string.xml and localization**
-+ **About page**
-+ **limit warning**
-+ **page for detail of selected tab**
+# What?
+We made our application to help these people across the world (language mutations) to work
+with money they have. The application is called FINANCIAL WATCHDOG.
+
+# About
+Financial watchdog is a project made during second part of Hong Kong summer school program
