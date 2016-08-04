@@ -161,7 +161,7 @@ public abstract class PieChartFragment extends Fragment {
             entries.add(new Entry(remainingMoney, i++));
         }
         labels.add(getResources().getString(R.string.remaining_money));
-        colors.add(Color.rgb(100, 100, 100));
+        colors.add(Color.rgb(200, 200, 200));
 
         return isOverLimit;
     }
