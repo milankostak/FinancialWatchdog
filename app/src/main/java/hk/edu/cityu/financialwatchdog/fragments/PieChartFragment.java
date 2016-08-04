@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import hk.edu.cityu.financialwatchdog.R;
 import hk.edu.cityu.financialwatchdog.entity.Category;
 import hk.edu.cityu.financialwatchdog.entity.Item;
 import hk.edu.cityu.financialwatchdog.entity.Settings;
@@ -159,7 +160,7 @@ public abstract class PieChartFragment extends Fragment {
             isOverLimit = false;
             entries.add(new Entry(remainingMoney, i++));
         }
-        labels.add("Remaining money");
+        labels.add(getResources().getString(R.string.remaining_money));
         colors.add(Color.rgb(100, 100, 100));
 
         return isOverLimit;
